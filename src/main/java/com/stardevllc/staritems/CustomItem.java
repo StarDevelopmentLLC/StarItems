@@ -39,16 +39,19 @@ public class CustomItem {
     }
 
     public ItemStack toItemStack() {
-        ItemStack stack = itemBuilder.build();
-        saveKeyToStack(stack);
-        return stack;
+        return toItemStack(1);
     }
     
     public ItemStack toItemStack(int amount) {
         ItemStack stack = itemBuilder.build();
         stack.setAmount(amount);
         saveKeyToStack(stack);
+        applyCustomNBT(stack);
         return stack;
+    }
+    
+    public void applyCustomNBT(ItemStack itemStack) {
+        
     }
 
     public void setInteractConsumer(Consumer<PlayerInteractEvent> interactConsumer) {
