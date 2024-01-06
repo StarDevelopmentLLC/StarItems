@@ -1,8 +1,6 @@
 package com.stardevllc.staritems;
 
 import com.stardevllc.starlib.registry.Registry;
-import de.tr7zw.nbtapi.NBT;
-import de.tr7zw.nbtapi.iface.ReadableNBT;
 import org.bukkit.Bukkit;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -14,7 +12,6 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public class CustomItemsManager implements Listener {
     private Registry<ItemKey, CustomItem> customItemRegistry = new Registry<>();
@@ -24,31 +21,10 @@ public class CustomItemsManager implements Listener {
         Bukkit.getServer().getPluginManager().registerEvents(this, plugin);
     }
     
-    public static ItemKey getKeyFromItem(ItemStack itemStack) {
-        if (itemStack == null) {
-            return null;
-        }
-        
-        return NBT.get(itemStack, nbt -> {
-            ReadableNBT staritemsCompound = nbt.getCompound("staritems");
-            if (staritemsCompound == null) {
-                return null;
-            } else {
-                Set<String> keys = staritemsCompound.getKeys();
-                if (keys.size() != 1) {
-                    return null;
-                }
-
-                String namespace = new ArrayList<>(keys).get(0);
-                return new ItemKey(namespace, staritemsCompound.getString(namespace));
-            }
-        });
-    }
-    
     @EventHandler
     public void onPlayerInteract(PlayerInteractEvent e) {
         ItemStack itemStack = e.getItem();
-        ItemKey itemKey = getKeyFromItem(itemStack);
+        ItemKey itemKey = CustomItem.getKeyFromItem(itemStack);
         if (itemKey == null) {
             return;
         }
