@@ -17,7 +17,7 @@ repositories {
 }
 
 group 'com.stardevllc'
-version '1.0.0-alpha.2'
+version '1.0.0-alpha.1'
 
 processResources {
     filesMatching("*.yml") {
