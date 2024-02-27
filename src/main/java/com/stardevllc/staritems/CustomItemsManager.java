@@ -8,7 +8,6 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +36,7 @@ public class CustomItemsManager implements Listener {
     
     public void addCustomItemClass(ItemKey itemKey, Class<? extends CustomItem> clazz) {
         try {
-            Constructor<? extends CustomItem> noargsconstructor = clazz.getDeclaredConstructor();
+            clazz.getDeclaredConstructor();
         } catch (NoSuchMethodException e) {
             throw new IllegalArgumentException("CustomItem classes must have a default no-args constructor.");
         }
