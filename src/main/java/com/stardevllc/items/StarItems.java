@@ -4,6 +4,7 @@ import com.stardevllc.items.listener.BlockListener;
 import com.stardevllc.items.listener.EntityListener;
 import com.stardevllc.items.listener.PlayerListener;
 import com.stardevllc.items.model.ItemRegistry;
+import com.stardevllc.items.tasks.InventoryItemTask;
 import com.stardevllc.starcore.utils.Config;
 import org.bukkit.plugin.ServicePriority;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -25,6 +26,8 @@ public class StarItems extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerListener(this), this);
         getServer().getPluginManager().registerEvents(new BlockListener(this), this);
         getServer().getPluginManager().registerEvents(new EntityListener(this), this);
+        
+        new InventoryItemTask(this).start();
     }
 
     public Config getMainConfig() {

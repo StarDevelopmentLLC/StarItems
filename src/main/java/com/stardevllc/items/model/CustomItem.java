@@ -17,13 +17,14 @@ public class CustomItem {
     protected ItemBuilder itemBuilder;
 
     protected Consumer<PlayerInteractEvent> interactConsumer; //Handled
-    protected Consumer<Player> whileInInventoryConsumer;
-    protected Consumer<Player> whileOnHotbarConsumer;
-    protected Consumer<Player> whileWearingConsumer;
+    protected Consumer<Player> whileInInventoryConsumer; //Handled
+    protected Consumer<Player> whileOnHotbarConsumer; //Handled
+    protected Consumer<Player> whileWearingConsumer; //Handled
+    protected Consumer<Player> whileHoldingConsumer; //Handled
     
     protected Consumer<EntityDamageByEntityEvent> onDamageEntityConsumer; //Handled
     protected Consumer<BlockBreakEvent> blockBreakConsumer; //Handled
-    protected Consumer<EntityDeathEvent> entityDeathConsumer;
+    protected Consumer<EntityDeathEvent> entityDeathConsumer; //Handled
     
     public CustomItem(String name, ItemBuilder itemBuilder) {
         this.name = ColorUtils.stripColor(name.toLowerCase().replace(" ", "_"));
@@ -95,6 +96,14 @@ public class CustomItem {
 
     public void setEntityDeathConsumer(Consumer<EntityDeathEvent> entityDeathConsumer) {
         this.entityDeathConsumer = entityDeathConsumer;
+    }
+
+    public Consumer<Player> getWhileHoldingConsumer() {
+        return whileHoldingConsumer;
+    }
+
+    public void setWhileHoldingConsumer(Consumer<Player> whileHoldingConsumer) {
+        this.whileHoldingConsumer = whileHoldingConsumer;
     }
 
     public ItemStack toItemStack() {
