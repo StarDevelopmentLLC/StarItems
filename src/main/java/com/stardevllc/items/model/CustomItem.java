@@ -6,6 +6,7 @@ import de.tr7zw.nbtapi.NBT;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
+import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
 
@@ -22,6 +23,7 @@ public class CustomItem {
     
     protected Consumer<EntityDamageByEntityEvent> onDamageEntityConsumer; //Handled
     protected Consumer<BlockBreakEvent> blockBreakConsumer; //Handled
+    protected Consumer<EntityDeathEvent> entityDeathConsumer;
     
     public CustomItem(String name, ItemBuilder itemBuilder) {
         this.name = ColorUtils.stripColor(name.toLowerCase().replace(" ", "_"));
@@ -86,7 +88,15 @@ public class CustomItem {
     public void setBlockBreakConsumer(Consumer<BlockBreakEvent> blockBreakConsumer) {
         this.blockBreakConsumer = blockBreakConsumer;
     }
-    
+
+    public Consumer<EntityDeathEvent> getEntityDeathConsumer() {
+        return entityDeathConsumer;
+    }
+
+    public void setEntityDeathConsumer(Consumer<EntityDeathEvent> entityDeathConsumer) {
+        this.entityDeathConsumer = entityDeathConsumer;
+    }
+
     public ItemStack toItemStack() {
         ItemStack itemStack = this.itemBuilder.build();
         NBT.modify(itemStack, nbt -> {
