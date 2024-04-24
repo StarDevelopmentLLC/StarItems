@@ -15,13 +15,13 @@ public class CustomItem {
     protected String name;
     protected ItemBuilder itemBuilder;
 
-    protected Consumer<PlayerInteractEvent> interactConsumer;
+    protected Consumer<PlayerInteractEvent> interactConsumer; //Handled
     protected Consumer<Player> whileInInventoryConsumer;
     protected Consumer<Player> whileOnHotbarConsumer;
     protected Consumer<Player> whileWearingConsumer;
     
-    protected Consumer<EntityDamageByEntityEvent> onDamageEntityConsumer;
-    protected Consumer<BlockBreakEvent> blockBreakConsumer;
+    protected Consumer<EntityDamageByEntityEvent> onDamageEntityConsumer; //Handled
+    protected Consumer<BlockBreakEvent> blockBreakConsumer; //Handled
     
     public CustomItem(String name, ItemBuilder itemBuilder) {
         this.name = ColorUtils.stripColor(name.toLowerCase().replace(" ", "_"));
