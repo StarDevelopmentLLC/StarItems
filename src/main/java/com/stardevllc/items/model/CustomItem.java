@@ -1,5 +1,6 @@
 package com.stardevllc.items.model;
 
+import com.stardevllc.starcore.color.ColorUtils;
 import com.stardevllc.starcore.item.ItemBuilder;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockBreakEvent;
@@ -21,7 +22,7 @@ public class CustomItem {
     protected Consumer<BlockBreakEvent> blockBreakConsumer;
     
     public CustomItem(String name, ItemBuilder itemBuilder) {
-        this.name = name;
+        this.name = ColorUtils.stripColor(name.toLowerCase().replace(" ", "_"));
         this.itemBuilder = itemBuilder;
     }
 
