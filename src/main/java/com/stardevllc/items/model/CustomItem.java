@@ -2,10 +2,12 @@ package com.stardevllc.items.model;
 
 import com.stardevllc.starcore.color.ColorUtils;
 import com.stardevllc.starcore.item.ItemBuilder;
+import de.tr7zw.nbtapi.NBT;
 import org.bukkit.entity.Player;
 import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.function.Consumer;
 
@@ -28,10 +30,6 @@ public class CustomItem {
 
     public String getName() {
         return name;
-    }
-
-    public ItemBuilder getItemBuilder() {
-        return itemBuilder;
     }
 
     public Consumer<PlayerInteractEvent> getInteractConsumer() {
@@ -80,5 +78,13 @@ public class CustomItem {
 
     public void setBlockBreakConsumer(Consumer<BlockBreakEvent> blockBreakConsumer) {
         this.blockBreakConsumer = blockBreakConsumer;
+    }
+    
+    public ItemStack toItemStack() {
+        ItemStack itemStack = this.itemBuilder.build();
+        NBT.modify(itemStack, nbt -> {
+            nbt.setString("staritemsid", this.name);
+        });
+        return itemStack;
     }
 }
