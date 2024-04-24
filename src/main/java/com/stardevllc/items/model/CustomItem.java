@@ -27,6 +27,13 @@ public class CustomItem {
         this.name = ColorUtils.stripColor(name.toLowerCase().replace(" ", "_"));
         this.itemBuilder = itemBuilder;
     }
+    
+    public CustomItem(ItemStack itemStack) {
+        this.itemBuilder = ItemBuilder.fromItemStack(itemStack);
+        this.name = NBT.get(itemStack, nbt -> {
+            return nbt.getString("staritemsid");
+        });
+    }
 
     public String getName() {
         return name;
