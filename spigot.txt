@@ -1,0 +1,74 @@
+StarItems is a plugin that is meant as a developer utility for the time being. This is not like other items pluigns where you can configure items via a command or a file. 
+I am working on this functionality as I work with items in my other projects. 
+
+[B]Required Dependencies[/B]
+Java 17
+[URL='https://www.spigotmc.org/resources/starcore.110550/']StarCore 1.0.0-alpha.27[/URL]
+
+[B]Version Information[/B]
+This plugin is a work in progress and very unstable. I am constantly adding, changing and removing things within this plugin. This is based on need in my other projects, of which are also works in progress and constantly changing and evolving. I expect things to stabilize as time goes on.
+
+[B]Basic Information[/B]
+StarItems is a plugin to provide the backbone of having custom items. It uses NBT to detect if an item is a custom item or a regular item. 
+This is not a plugin for server owners, but for developers. Over time, it will provide some default functionality for server owners. 
+
+[B]Installation - Server Owners[/B]
+Download the plugin and place it in your plugins folder and [B]restart[/B] the server to apply everything.
+
+[B]Installation - Plugin Developers[/B]
+I strongly encourage the use of a build tool like Gradle or Maven. You can find the details needed to fill in what you need in your build tool.
+[B]Repository[/B]: [URL='https://www.jitpack.io/']https://www.jitpack.io[/URL]
+[B]Group[/B]: com.github.StarDevelopmentLLC
+[B]Artifact[/B]: StarItems
+[B]Version[/B]: 1.0.0-alpha.1
+This should be compileOnly for Gradle and provided scope for Maven, its a plugin.
+
+[B]Command - /staritems[/B]
+This is the main admin command for StarItems. Currently it does very little, but more will be added as more features are added.
+Permission: staritems.admin
+
+/staritems list
+This command lists all items currently registered to StarItems, and which plugin that owns those items.
+Permission: staritems.admin.list
+
+/staritems give <name> [amount]
+This command allows you to give yourself a custom item. The <name> is what is listed in the list command and [amount] is an optional argument that defaults to 1
+Permission: staritems.admin.give
+
+[B]Usage - Plugin Develoeprs[/B]
+To use this plugin library, you must also have StarCore. The ItemBuilder class is used to build the items and provide item configuration. 
+
+[code=Java]
+ItemBuilder itemBuilder = ItemBuilder.of(XMaterial.DIAMOND);
+[/code]
+
+Then we want to create a custom item instance, passing in a plugin, the name, and the itembuilder
+The name of the item is the "id" of it, the plugin will automatically reformat the name to work
+
+[code=Java]
+CustomItem customItem = new CustomItem(plugin, "custom_diamond", itemBuilder);
+[/code]
+
+Then we want to obtain the ItemRegistry and register the custom item to it. 
+Note: Only register each custom item once. It is best to store this in a static field of some kind, or use the registry to obtain the item.
+
+[code=Java]
+ItemRegistry itemRegistry = plugin.getServer().getServicesManager().getRegistration(ItemRegistry.class).getProvider();
+itemRegistry.register(customItem);
+[/code]
+
+A note about the code above, when obtaining instances from the services manager, it is best to use null checks on the getRegistration() method return value. 
+
+We can add a custom item to a player's inventory by using the toItemStack method
+[code=Java]
+player.getInventory().addItem(customItem.toItemStack());
+[/code]
+Do not add items using the ItemBuilder instance. The toItemStack method adds the name as an NBT String to the item stack. If this does not exist, then the library will not detect it with the consumers.
+
+StarItems provides the ability to attach consumers to items based on certain actions. Take a look at the [URL='https://github.com/StarDevelopmentLLC/StarItems/blob/main/src/main/java/com/stardevllc/items/model/CustomItem.java']CustomItems[/URL] class at the consumer fields. 
+StarItems handles these automatically and will pass the event/player to the consumer. 
+The event based ones will be called only if the item matches, when the event occurs
+The non-event ones are checked every second, It is recommended to keep things like potion effects at a lower value, I found in testing putting them at 2 seconds (40 ticks) works fine. 
+Night vision is a bit weird due to the flashing effect, you will need to set this higher.
+
+[I]This plugin is provided free of charge and under the MIT Open Source License. I will never sell this library anywhere. If you see it being sold, it is not by me and please report any of these cases to me directly. This library is only published as a GitHub Release and on SpigotMC, other sources are to be considered use at your own risk.[/I]
