@@ -14,7 +14,6 @@ import java.io.File;
 public class StarItems extends JavaPlugin {
     
     private Config mainConfig;
-    
     private ItemRegistry itemRegistry = new ItemRegistry();
 
     @Override

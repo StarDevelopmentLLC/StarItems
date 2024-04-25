@@ -46,64 +46,72 @@ public class CustomItem {
         return interactConsumer;
     }
 
-    public void setInteractConsumer(Consumer<PlayerInteractEvent> interactConsumer) {
+    public CustomItem setInteractConsumer(Consumer<PlayerInteractEvent> interactConsumer) {
         this.interactConsumer = interactConsumer;
+        return this;
     }
 
     public Consumer<Player> getWhileInInventoryConsumer() {
         return whileInInventoryConsumer;
     }
 
-    public void setWhileInInventoryConsumer(Consumer<Player> whileInInventoryConsumer) {
+    public CustomItem setWhileInInventoryConsumer(Consumer<Player> whileInInventoryConsumer) {
         this.whileInInventoryConsumer = whileInInventoryConsumer;
+        return this;
     }
 
     public Consumer<Player> getWhileOnHotbarConsumer() {
         return whileOnHotbarConsumer;
     }
 
-    public void setWhileOnHotbarConsumer(Consumer<Player> whileOnHotbarConsumer) {
+    public CustomItem setWhileOnHotbarConsumer(Consumer<Player> whileOnHotbarConsumer) {
         this.whileOnHotbarConsumer = whileOnHotbarConsumer;
+        return this;
     }
 
     public Consumer<Player> getWhileWearingConsumer() {
         return whileWearingConsumer;
     }
 
-    public void setWhileWearingConsumer(Consumer<Player> whileWearingConsumer) {
+    public CustomItem setWhileWearingConsumer(Consumer<Player> whileWearingConsumer) {
         this.whileWearingConsumer = whileWearingConsumer;
+        return this;
     }
 
     public Consumer<EntityDamageByEntityEvent> getOnDamageEntityConsumer() {
         return onDamageEntityConsumer;
     }
 
-    public void setOnDamageEntityConsumer(Consumer<EntityDamageByEntityEvent> onDamageEntityConsumer) {
+    public CustomItem setOnDamageEntityConsumer(Consumer<EntityDamageByEntityEvent> onDamageEntityConsumer) {
         this.onDamageEntityConsumer = onDamageEntityConsumer;
+        return this;
     }
 
     public Consumer<BlockBreakEvent> getBlockBreakConsumer() {
         return blockBreakConsumer;
     }
 
-    public void setBlockBreakConsumer(Consumer<BlockBreakEvent> blockBreakConsumer) {
+    public CustomItem setBlockBreakConsumer(Consumer<BlockBreakEvent> blockBreakConsumer) {
         this.blockBreakConsumer = blockBreakConsumer;
+        return this;
     }
 
     public Consumer<EntityDeathEvent> getEntityDeathConsumer() {
         return entityDeathConsumer;
     }
 
-    public void setEntityDeathConsumer(Consumer<EntityDeathEvent> entityDeathConsumer) {
+    public CustomItem setEntityDeathConsumer(Consumer<EntityDeathEvent> entityDeathConsumer) {
         this.entityDeathConsumer = entityDeathConsumer;
+        return this;
     }
 
     public Consumer<Player> getWhileHoldingConsumer() {
         return whileHoldingConsumer;
     }
 
-    public void setWhileHoldingConsumer(Consumer<Player> whileHoldingConsumer) {
+    public CustomItem setWhileHoldingConsumer(Consumer<Player> whileHoldingConsumer) {
         this.whileHoldingConsumer = whileHoldingConsumer;
+        return this;
     }
 
     public ItemStack toItemStack() {
