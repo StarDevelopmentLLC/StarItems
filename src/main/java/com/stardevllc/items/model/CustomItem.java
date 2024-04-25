@@ -9,10 +9,12 @@ import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.function.Consumer;
 
 public class CustomItem {
+    protected JavaPlugin plugin;
     protected String name;
     protected ItemBuilder itemBuilder;
 
@@ -26,12 +28,14 @@ public class CustomItem {
     protected Consumer<BlockBreakEvent> blockBreakConsumer; //Handled
     protected Consumer<EntityDeathEvent> entityDeathConsumer; //Handled
     
-    public CustomItem(String name, ItemBuilder itemBuilder) {
+    public CustomItem(JavaPlugin plugin, String name, ItemBuilder itemBuilder) {
+        this.plugin = plugin;
         this.name = ColorUtils.stripColor(name.toLowerCase().replace(" ", "_"));
         this.itemBuilder = itemBuilder;
     }
     
-    public CustomItem(ItemStack itemStack) {
+    public CustomItem(JavaPlugin plugin, ItemStack itemStack) {
+        this.plugin = plugin;
         this.itemBuilder = ItemBuilder.fromItemStack(itemStack);
         this.name = NBT.get(itemStack, nbt -> {
             return nbt.getString("staritemsid");
@@ -112,6 +116,10 @@ public class CustomItem {
     public CustomItem setWhileHoldingConsumer(Consumer<Player> whileHoldingConsumer) {
         this.whileHoldingConsumer = whileHoldingConsumer;
         return this;
+    }
+
+    public JavaPlugin getPlugin() {
+        return plugin;
     }
 
     public ItemStack toItemStack() {
