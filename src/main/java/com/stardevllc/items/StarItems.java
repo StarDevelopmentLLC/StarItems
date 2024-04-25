@@ -1,5 +1,6 @@
 package com.stardevllc.items;
 
+import com.stardevllc.items.cmd.StarItemsCommand;
 import com.stardevllc.items.listener.BlockListener;
 import com.stardevllc.items.listener.EntityListener;
 import com.stardevllc.items.listener.PlayerListener;
@@ -36,6 +37,8 @@ public class StarItems extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new PlayerListener(this), this);
         getServer().getPluginManager().registerEvents(new BlockListener(this), this);
         getServer().getPluginManager().registerEvents(new EntityListener(this), this);
+        
+        getCommand("staritems").setExecutor(new StarItemsCommand(this));
         
         new InventoryItemTask(this).start();
     }
