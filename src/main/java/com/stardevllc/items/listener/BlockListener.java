@@ -20,9 +20,9 @@ public class BlockListener implements Listener {
     
     @EventHandler
     public void onBlockBreak(BlockBreakEvent e) {
-        ItemStack mainHand = e.getPlayer().getInventory().getItemInMainHand();
+        ItemStack mainHand = plugin.getPlayerHandWrapper().getItemInMainHand(e.getPlayer());
 
-        if (mainHand.getType() != Material.AIR) {
+        if (mainHand != null && mainHand.getType() != Material.AIR) {
             String id = NBT.get(mainHand, nbt -> {
                 return nbt.getString("staritemsid");
             });

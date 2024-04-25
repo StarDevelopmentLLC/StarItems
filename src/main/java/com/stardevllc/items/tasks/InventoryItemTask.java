@@ -20,15 +20,15 @@ public class InventoryItemTask extends StarThread<StarItems> {
     public void onRun() {
         for (Player player : Bukkit.getOnlinePlayers()) {
             PlayerInventory inv = player.getInventory();
-
-            CustomItem mainHandItem = getCustomItem(inv.getItemInMainHand());
+            
+            CustomItem mainHandItem = getCustomItem(plugin.getPlayerHandWrapper().getItemInMainHand(player));
             if (mainHandItem != null) {
                 if (mainHandItem.getWhileHoldingConsumer() != null) {
                     mainHandItem.getWhileHoldingConsumer().accept(player);
                 }
             }
             
-            CustomItem offHandItem = getCustomItem(inv.getItemInOffHand());
+            CustomItem offHandItem = getCustomItem(plugin.getPlayerHandWrapper().getItemInOffHand(player));
             if (offHandItem != null) {
                 if (offHandItem.getWhileHoldingConsumer() != null) {
                     offHandItem.getWhileHoldingConsumer().accept(player);

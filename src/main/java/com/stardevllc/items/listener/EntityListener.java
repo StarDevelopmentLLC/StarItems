@@ -27,9 +27,9 @@ public class EntityListener implements Listener {
             return;
         }
 
-        ItemStack itemStack = killer.getInventory().getItemInMainHand();
+        ItemStack itemStack = plugin.getPlayerHandWrapper().getItemInMainHand(killer);
 
-        if (itemStack.getType() == Material.AIR) {
+        if (itemStack != null && itemStack.getType() == Material.AIR) {
             return;
         }
 
@@ -60,9 +60,9 @@ public class EntityListener implements Listener {
             return;
         }
 
-        ItemStack itemStack = player.getInventory().getItemInMainHand();
+        ItemStack itemStack = plugin.getPlayerHandWrapper().getItemInMainHand(player);
         
-        if (itemStack.getType() == Material.AIR) {
+        if (itemStack != null && itemStack.getType() == Material.AIR) {
             return;
         }
         
