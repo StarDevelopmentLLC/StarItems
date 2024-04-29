@@ -8,6 +8,7 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -18,15 +19,17 @@ public class CustomItem {
     protected String name;
     protected ItemBuilder itemBuilder;
 
-    protected Consumer<PlayerInteractEvent> interactConsumer; //Handled
-    protected Consumer<Player> whileInInventoryConsumer; //Handled
-    protected Consumer<Player> whileOnHotbarConsumer; //Handled
-    protected Consumer<Player> whileWearingConsumer; //Handled
-    protected Consumer<Player> whileHoldingConsumer; //Handled
+    protected Consumer<PlayerInteractEvent> interactConsumer;
+    protected Consumer<Player> whileInInventoryConsumer;
+    protected Consumer<Player> whileOnHotbarConsumer;
+    protected Consumer<Player> whileWearingConsumer;
+    protected Consumer<Player> whileHoldingConsumer;
     
-    protected Consumer<EntityDamageByEntityEvent> onDamageEntityConsumer; //Handled
-    protected Consumer<BlockBreakEvent> blockBreakConsumer; //Handled
-    protected Consumer<EntityDeathEvent> entityDeathConsumer; //Handled
+    protected Consumer<PlayerItemConsumeEvent> playerEatConsumer;
+    
+    protected Consumer<EntityDamageByEntityEvent> onDamageEntityConsumer;
+    protected Consumer<BlockBreakEvent> blockBreakConsumer;
+    protected Consumer<EntityDeathEvent> entityDeathConsumer;
     
     public CustomItem(JavaPlugin plugin, String name, ItemBuilder itemBuilder) {
         this.plugin = plugin;
@@ -115,6 +118,15 @@ public class CustomItem {
 
     public CustomItem setWhileHoldingConsumer(Consumer<Player> whileHoldingConsumer) {
         this.whileHoldingConsumer = whileHoldingConsumer;
+        return this;
+    }
+    
+    public Consumer<PlayerItemConsumeEvent> getPlayerEatConsumer() {
+        return this.playerEatConsumer;
+    }
+    
+    public CustomItem setPlayerEatConsumer(Consumer<PlayerItemConsumeEvent> playerEatConsumer) {
+        this.playerEatConsumer = playerEatConsumer;
         return this;
     }
 

@@ -7,6 +7,7 @@ import de.tr7zw.nbtapi.NBT;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerItemConsumeEvent;
 import org.bukkit.inventory.ItemStack;
 
 public class PlayerListener implements Listener {
@@ -15,6 +16,34 @@ public class PlayerListener implements Listener {
     
     public PlayerListener(StarItems plugin) {
         this.plugin = plugin;
+    }
+    
+    @EventHandler
+    public void onPlayerConsume(PlayerItemConsumeEvent e) {
+        ItemStack itemStack = e.getItem();
+
+        if (itemStack == null) {
+            return;
+        }
+
+        String id = NBT.get(itemStack, nbt -> {
+            return nbt.getString("staritemsid");
+        });
+
+        if (StringHelper.isEmpty(id)) {
+            return;
+        }
+
+        CustomItem customItem = plugin.getItemRegistry().get(id);
+        if (customItem == null) {
+            return;
+        }
+
+        if (customItem.getPlayerEatConsumer() == null) {
+            return;
+        }
+
+        customItem.getPlayerEatConsumer().accept(e);
     }
     
     @EventHandler
