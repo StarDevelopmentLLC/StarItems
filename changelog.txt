@@ -1,2 +1,8 @@
+1.0.0-alpha.3
+- Added a eat consumer to the custom item class for when a player eats an item
+
+1.0.0-alpha.2
+- Same thing as .1, just a JitPack issue
+
 1.0.0-alpha.1
 - Initial Release
