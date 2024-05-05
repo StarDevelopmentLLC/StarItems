@@ -29,12 +29,12 @@ publishing {
 }
 
 group 'com.github.StarDevelopmentLLC'
-version '1.0.0-alpha.3'
+version '1.0.0-alpha.4'
 
 dependencies {
     compileOnly 'org.spigotmc:spigot-api:1.20.4-R0.1-SNAPSHOT'
-    compileOnly 'com.github.StarDevelopmentLLC:StarCore:1.0.0-alpha.27'
-    compileOnly 'com.github.StarDevelopmentLLC:StarLib:1.0.0-alpha.14'
+    compileOnly 'com.github.StarDevelopmentLLC:StarCore:1.0.0-alpha.30'
+    compileOnly 'com.github.StarDevelopmentLLC:StarLib:1.0.0-alpha.16'
     compileOnly 'me.clip:placeholderapi:2.11.5'
     compileOnly 'de.tr7zw:item-nbt-api-plugin:2.12.3'
 }
