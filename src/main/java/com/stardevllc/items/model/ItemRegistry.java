@@ -4,6 +4,6 @@ import com.stardevllc.starlib.registry.StringRegistry;
 
 public class ItemRegistry extends StringRegistry<CustomItem> {
     public ItemRegistry() {
-        super(CustomItem::getName);
+        super(null, null, CustomItem::getName, null, null);
     }
 }
