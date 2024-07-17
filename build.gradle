@@ -29,13 +29,13 @@ publishing {
 }
 
 group 'com.github.StarDevelopmentLLC'
-version '1.0.0-alpha.4'
+version '1.0.0-alpha.5'
 
 dependencies {
-    compileOnly 'org.spigotmc:spigot-api:1.20.6-R0.1-SNAPSHOT'
-    compileOnly 'com.github.StarDevelopmentLLC:StarCore:1.0.0-alpha.34'
+    compileOnly 'org.spigotmc:spigot-api:1.21-R0.1-SNAPSHOT'
+    compileOnly 'com.github.StarDevelopmentLLC:StarCore:1.0.0-alpha.37'
     compileOnly 'me.clip:placeholderapi:2.11.5'
-    compileOnly 'de.tr7zw:item-nbt-api-plugin:2.12.3'
+    compileOnly 'de.tr7zw:item-nbt-api-plugin:2.13.1'
 }
 
 processResources {
@@ -46,7 +46,7 @@ processResources {
 
 java {
     toolchain {
-        languageVersion = JavaLanguageVersion.of(17)
+        languageVersion = JavaLanguageVersion.of(21)
     }
 }
 
