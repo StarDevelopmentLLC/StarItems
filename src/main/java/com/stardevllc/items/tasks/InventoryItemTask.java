@@ -1,9 +1,9 @@
 package com.stardevllc.items.tasks;
 
+import com.stardevllc.helper.StringHelper;
 import com.stardevllc.items.StarItems;
 import com.stardevllc.items.model.CustomItem;
 import com.stardevllc.starcore.utils.StarThread;
-import com.stardevllc.starlib.helper.StringHelper;
 import de.tr7zw.nbtapi.NBT;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;

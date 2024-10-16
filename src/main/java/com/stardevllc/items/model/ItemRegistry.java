@@ -1,7 +1,7 @@
 package com.stardevllc.items.model;
 
-import com.stardevllc.starlib.helper.StringHelper;
-import com.stardevllc.starlib.registry.StringRegistry;
+import com.stardevllc.helper.StringHelper;
+import com.stardevllc.registry.StringRegistry;
 import de.tr7zw.nbtapi.NBT;
 import org.bukkit.Material;
 import org.bukkit.event.Event;

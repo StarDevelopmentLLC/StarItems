@@ -10,7 +10,7 @@ import com.stardevllc.items.wrapper.PlayerHandWrapper;
 import com.stardevllc.items.wrapper.impl.PlayerHandWrapper_1_8;
 import com.stardevllc.items.wrapper.impl.PlayerHandWrapper_1_9;
 import com.stardevllc.starcore.NMSVersion;
-import com.stardevllc.starcore.utils.Config;
+import com.stardevllc.starcore.config.Config;
 import org.bukkit.plugin.ServicePriority;
 import org.bukkit.plugin.java.JavaPlugin;
 
