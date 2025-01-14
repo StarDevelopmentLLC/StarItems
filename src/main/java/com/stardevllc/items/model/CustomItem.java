@@ -1,6 +1,6 @@
 package com.stardevllc.items.model;
 
-import com.stardevllc.starcore.color.ColorHandler;
+import com.stardevllc.colors.StarColors;
 import com.stardevllc.starcore.item.ItemBuilder;
 import de.tr7zw.nbtapi.NBT;
 import org.bukkit.entity.Player;
@@ -26,7 +26,7 @@ public class CustomItem {
     
     public CustomItem(JavaPlugin plugin, String name, ItemBuilder itemBuilder) {
         this.plugin = plugin;
-        this.name = ColorHandler.stripColor(name.toLowerCase().replace(" ", "_"));
+        this.name = StarColors.stripColor(name.toLowerCase().replace(" ", "_"));
         this.itemBuilder = itemBuilder;
     }
     
