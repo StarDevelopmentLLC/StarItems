@@ -1,4 +1,4 @@
-package com.stardevllc.items.model;
+package com.stardevllc.staritems.model;
 
 import org.bukkit.event.Event;
 

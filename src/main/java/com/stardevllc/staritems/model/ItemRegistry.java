@@ -1,4 +1,4 @@
-package com.stardevllc.items.model;
+package com.stardevllc.staritems.model;
 
 import com.stardevllc.helper.StringHelper;
 import com.stardevllc.registry.StringRegistry;

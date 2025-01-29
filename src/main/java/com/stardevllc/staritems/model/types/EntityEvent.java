@@ -1,6 +1,6 @@
-package com.stardevllc.items.model.types;
+package com.stardevllc.staritems.model.types;
 
-import com.stardevllc.items.model.EventType;
+import com.stardevllc.staritems.model.EventType;
 import org.bukkit.event.entity.EntityDamageByEntityEvent;
 import org.bukkit.event.entity.EntityDeathEvent;
 

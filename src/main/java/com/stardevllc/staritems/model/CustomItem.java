@@ -1,7 +1,7 @@
-package com.stardevllc.items.model;
+package com.stardevllc.staritems.model;
 
 import com.stardevllc.colors.StarColors;
-import com.stardevllc.starcore.item.ItemBuilder;
+import com.stardevllc.itembuilder.ItemBuilder;
 import de.tr7zw.nbtapi.NBT;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;

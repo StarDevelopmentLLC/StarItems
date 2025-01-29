@@ -1,14 +1,14 @@
-package com.stardevllc.items;
+package com.stardevllc.staritems;
 
-import com.stardevllc.items.cmd.StarItemsCommand;
-import com.stardevllc.items.listener.BlockListener;
-import com.stardevllc.items.listener.EntityListener;
-import com.stardevllc.items.listener.PlayerListener;
-import com.stardevllc.items.model.ItemRegistry;
-import com.stardevllc.items.tasks.InventoryItemTask;
-import com.stardevllc.starcore.StarCore;
-import com.stardevllc.starcore.config.Config;
-import com.stardevllc.starcore.wrapper.PlayerHandWrapper;
+import com.stardevllc.staritems.cmd.StarItemsCommand;
+import com.stardevllc.staritems.listener.BlockListener;
+import com.stardevllc.staritems.listener.EntityListener;
+import com.stardevllc.staritems.listener.PlayerListener;
+import com.stardevllc.staritems.model.ItemRegistry;
+import com.stardevllc.staritems.tasks.InventoryItemTask;
+import com.stardevllc.mcwrappers.MCWrappers;
+import com.stardevllc.mcwrappers.base.PlayerHandWrapper;
+import com.stardevllc.starcore.config.Configuration;
 import org.bukkit.plugin.ServicePriority;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -16,15 +16,15 @@ import java.io.File;
 
 public class StarItems extends JavaPlugin {
     
-    private Config mainConfig;
+    private Configuration mainConfig;
     private ItemRegistry itemRegistry = new ItemRegistry();
     private PlayerHandWrapper playerHandWrapper;
 
     @Override
     public void onEnable() {
-        this.mainConfig = new Config(new File(getDataFolder(), "config.yml"));
+        this.mainConfig = new Configuration(new File(getDataFolder(), "config.yml"));
         
-        this.playerHandWrapper = ((StarCore) getServer().getPluginManager().getPlugin("StarCore")).getPlayerHandWrapper();
+        this.playerHandWrapper = MCWrappers.PLAYER_HAND_WRAPPER;
         
         getServer().getServicesManager().register(ItemRegistry.class, itemRegistry, this, ServicePriority.Highest);
         
@@ -37,7 +37,7 @@ public class StarItems extends JavaPlugin {
         new InventoryItemTask(this).start();
     }
 
-    public Config getMainConfig() {
+    public Configuration getMainConfig() {
         return mainConfig;
     }
 
