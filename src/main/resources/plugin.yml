@@ -1,4 +1,4 @@
-main: com.stardevllc.items.StarItems
+main: com.stardevllc.staritems.StarItems
 version: ${version}
 api-version: 1.20
 name: ${name}

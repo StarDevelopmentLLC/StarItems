@@ -1,6 +1,6 @@
-package com.stardevllc.items.listener;
+package com.stardevllc.staritems.listener;
 
-import com.stardevllc.items.StarItems;
+import com.stardevllc.staritems.StarItems;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

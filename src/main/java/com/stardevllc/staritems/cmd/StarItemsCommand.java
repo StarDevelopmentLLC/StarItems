@@ -1,9 +1,9 @@
-package com.stardevllc.items.cmd;
+package com.stardevllc.staritems.cmd;
 
 import com.stardevllc.colors.StarColors;
-import com.stardevllc.items.StarItems;
-import com.stardevllc.items.model.CustomItem;
-import com.stardevllc.items.model.ItemRegistry;
+import com.stardevllc.staritems.StarItems;
+import com.stardevllc.staritems.model.CustomItem;
+import com.stardevllc.staritems.model.ItemRegistry;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;

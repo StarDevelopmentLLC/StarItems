@@ -1,6 +1,6 @@
-package com.stardevllc.items.model.types;
+package com.stardevllc.staritems.model.types;
 
-import com.stardevllc.items.model.EventType;
+import com.stardevllc.staritems.model.EventType;
 import org.bukkit.event.block.BlockBreakEvent;
 
 public class BlockEvent<T extends org.bukkit.event.block.BlockEvent> extends EventType<T> {
