@@ -30,13 +30,11 @@ publishing {
 }
 
 group 'com.github.StarDevelopmentLLC'
-version '0.1.2'
+version '0.1.3'
 
 shadowJar {
     archiveClassifier.set('')
     //destinationDirectory = file(System.getProperty("user.home") + File.separator + "Documents" + File.separator + "JarOutput")
-    relocate('com.stardevllc.mcwrappers', 'com.stardevllc.staritems.mcwrappers')
-    relocate('com.stardevllc.itembuilder', 'com.stardevllc.staritems.itembuilder')
 
     dependencies {
         exclude(dependency('org.apache.logging.log4j:log4j-core:2.11.1'))
