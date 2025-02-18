@@ -46,7 +46,7 @@ dependencies {
     compileOnly 'com.github.StarDevelopmentLLC:StarCore:0.1.10'
     compileOnly 'me.clip:placeholderapi:2.11.5'
     compileOnly 'de.tr7zw:item-nbt-api-plugin:2.14.1'
-    implementation 'com.github.StarDevelopmentLLC:itembuilder:0.1.0'
+    implementation 'com.github.StarDevelopmentLLC:itembuilder:0.1.1'
     implementation 'com.github.StarDevelopmentLLC:mcwrappers:0.1.0'
 }
 
