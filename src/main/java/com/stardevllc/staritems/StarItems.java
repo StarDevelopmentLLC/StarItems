@@ -1,14 +1,12 @@
 package com.stardevllc.staritems;
 
+import com.stardevllc.starcore.base.wrappers.MCWrappers;
+import com.stardevllc.starcore.base.wrappers.PlayerHandWrapper;
+import com.stardevllc.starcore.config.Configuration;
 import com.stardevllc.staritems.cmd.StarItemsCommand;
-import com.stardevllc.staritems.listener.BlockListener;
-import com.stardevllc.staritems.listener.EntityListener;
-import com.stardevllc.staritems.listener.PlayerListener;
+import com.stardevllc.staritems.listener.*;
 import com.stardevllc.staritems.model.ItemRegistry;
 import com.stardevllc.staritems.tasks.InventoryItemTask;
-import com.stardevllc.mcwrappers.MCWrappers;
-import com.stardevllc.mcwrappers.base.PlayerHandWrapper;
-import com.stardevllc.starcore.config.Configuration;
 import org.bukkit.plugin.ServicePriority;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -24,7 +22,7 @@ public class StarItems extends JavaPlugin {
     public void onEnable() {
         this.mainConfig = new Configuration(new File(getDataFolder(), "config.yml"));
         
-        this.playerHandWrapper = MCWrappers.PLAYER_HAND_WRAPPER;
+        this.playerHandWrapper = getServer().getServicesManager().getRegistration(MCWrappers.class).getProvider().getPlayerHandWrapper();
         
         getServer().getServicesManager().register(ItemRegistry.class, itemRegistry, this, ServicePriority.Highest);
         
