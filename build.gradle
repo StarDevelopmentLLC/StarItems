@@ -29,13 +29,13 @@ publishing {
 }
 
 group 'com.github.StarDevelopmentLLC'
-version '0.1.4'
+version '0.1.5'
 
 dependencies {
     compileOnly 'org.spigotmc:spigot-api:1.21.5-R0.1-SNAPSHOT'
-    compileOnly 'com.github.StarDevelopmentLLC:StarCore:0.2.3'
+    compileOnly 'com.github.StarDevelopmentLLC:StarCore:0.3.0'
     compileOnly 'me.clip:placeholderapi:2.11.5'
-    compileOnly 'de.tr7zw:item-nbt-api-plugin:2.14.1'
+    compileOnly 'de.tr7zw:item-nbt-api-plugin:2.15.0'
 }
 
 processResources {
