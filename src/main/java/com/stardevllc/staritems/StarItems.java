@@ -15,7 +15,7 @@ import java.io.File;
 public class StarItems extends JavaPlugin {
     
     private Configuration mainConfig;
-    private ItemRegistry itemRegistry = new ItemRegistry();
+    private ItemRegistry itemRegistry;
     private PlayerHandWrapper playerHandWrapper;
 
     @Override
@@ -30,6 +30,7 @@ public class StarItems extends JavaPlugin {
             getLogger().warning("Could not retrieve the player hand wrapper");
         }
         
+        this.itemRegistry = new ItemRegistry(this);
         getServer().getServicesManager().register(ItemRegistry.class, itemRegistry, this, ServicePriority.Highest);
         getLogger().info("Registered the ItemRegistry to the ServicesManager");
         

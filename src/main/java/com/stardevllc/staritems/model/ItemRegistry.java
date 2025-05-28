@@ -2,14 +2,20 @@ package com.stardevllc.staritems.model;
 
 import com.stardevllc.helper.StringHelper;
 import com.stardevllc.registry.StringRegistry;
+import com.stardevllc.staritems.StarItems;
 import de.tr7zw.nbtapi.NBT;
 import org.bukkit.Material;
 import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
 
 public class ItemRegistry extends StringRegistry<CustomItem> {
-    public ItemRegistry() {
+    
+    private StarItems plugin;
+    
+    public ItemRegistry(StarItems plugin) {
         super(null, null, CustomItem::getName, null, null);
+        this.plugin = plugin;
+        addRegisterListener((s, customItem) -> plugin.getLogger().info("Registered the item " + customItem.getName() + " from the plugin " + customItem.getPlugin().getName() + " v" + customItem.getPlugin().getDescription().getVersion()));
     }
     
     public void handleItemEvent(Event event, ItemStack... itemStacks) {
@@ -29,7 +35,7 @@ public class ItemRegistry extends StringRegistry<CustomItem> {
             String id = NBT.get(itemStack, nbt -> {
                 return nbt.getString("staritemsid");
             });
-
+            
             if (StringHelper.isEmpty(id)) {
                 return;
             }

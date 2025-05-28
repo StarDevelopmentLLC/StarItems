@@ -46,8 +46,8 @@ public class StarItemsCommand implements CommandExecutor {
             StarColors.coloredMessage(sender, "&aList of registered items.");
             for (CustomItem customItem : registry) {
                 StarColors.coloredMessage(sender, "  &8- &a" + customItem.getName() + " &7[&d" + customItem.getPlugin() + "&7]");
-                return true;
             }
+            return true;
         } else if (args[0].equalsIgnoreCase("give")) {
             if (!sender.hasPermission("staritems.admin.give")) {
                 StarColors.coloredMessage(sender, "&cYou don't have permission to use this command!");
