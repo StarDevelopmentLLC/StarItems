@@ -21,18 +21,28 @@ public class StarItems extends JavaPlugin {
     @Override
     public void onEnable() {
         this.mainConfig = new Configuration(new File(getDataFolder(), "config.yml"));
+        getLogger().info("Initialized the config.yml file");
         
         this.playerHandWrapper = getServer().getServicesManager().getRegistration(MCWrappers.class).getProvider().getPlayerHandWrapper();
+        if (this.playerHandWrapper != null) {
+            getLogger().info("Retrieved the player hand wrapper: " + this.playerHandWrapper.getClass().getName());
+        } else {
+            getLogger().warning("Could not retrieve the player hand wrapper");
+        }
         
         getServer().getServicesManager().register(ItemRegistry.class, itemRegistry, this, ServicePriority.Highest);
+        getLogger().info("Registered the ItemRegistry to the ServicesManager");
         
         getServer().getPluginManager().registerEvents(new PlayerListener(this), this);
         getServer().getPluginManager().registerEvents(new BlockListener(this), this);
         getServer().getPluginManager().registerEvents(new EntityListener(this), this);
+        getLogger().info("Registered event handlers");
         
         getCommand("staritems").setExecutor(new StarItemsCommand(this));
+        getLogger().info("Registered the /staritems command");
         
         new InventoryItemTask(this).start();
+        getLogger().info("Started the InventoryItemTask");
     }
 
     public Configuration getMainConfig() {

@@ -17,7 +17,7 @@ public class CustomItem {
     protected String name;
     protected ItemBuilder itemBuilder;
     
-    protected Set<EventHandler<?>> eventHandlers = new HashSet<>();
+    protected Set<EventHandler<? extends Event>> eventHandlers = new HashSet<>();
     
     protected Consumer<Player> whileInInventoryConsumer;
     protected Consumer<Player> whileOnHotbarConsumer;
@@ -42,50 +42,50 @@ public class CustomItem {
         eventHandlers.add(listener);
     }
     
-    public void handleEvent(Event event) {
-        for (EventHandler
-                eventHandler : this.eventHandlers) {
+    public <T extends Event> void handleEvent(T event) {
+        for (EventHandler eventHandler : this.eventHandlers) {
             try {
-               eventHandler.onEvent(event);
-            } catch (Throwable throwable) {}
+                eventHandler.onEvent(event);
+            } catch (Throwable throwable) {
+            }
         }
     }
-
+    
     public String getName() {
         return name;
     }
-
+    
     public Consumer<Player> getWhileInInventoryConsumer() {
         return whileInInventoryConsumer;
     }
-
+    
     public CustomItem setWhileInInventoryConsumer(Consumer<Player> whileInInventoryConsumer) {
         this.whileInInventoryConsumer = whileInInventoryConsumer;
         return this;
     }
-
+    
     public Consumer<Player> getWhileOnHotbarConsumer() {
         return whileOnHotbarConsumer;
     }
-
+    
     public CustomItem setWhileOnHotbarConsumer(Consumer<Player> whileOnHotbarConsumer) {
         this.whileOnHotbarConsumer = whileOnHotbarConsumer;
         return this;
     }
-
+    
     public Consumer<Player> getWhileWearingConsumer() {
         return whileWearingConsumer;
     }
-
+    
     public CustomItem setWhileWearingConsumer(Consumer<Player> whileWearingConsumer) {
         this.whileWearingConsumer = whileWearingConsumer;
         return this;
     }
-
+    
     public Consumer<Player> getWhileHoldingConsumer() {
         return whileHoldingConsumer;
     }
-
+    
     public CustomItem setWhileHoldingConsumer(Consumer<Player> whileHoldingConsumer) {
         this.whileHoldingConsumer = whileHoldingConsumer;
         return this;
@@ -94,7 +94,7 @@ public class CustomItem {
     public JavaPlugin getPlugin() {
         return plugin;
     }
-
+    
     public ItemStack toItemStack() {
         ItemStack itemStack = this.itemBuilder.build();
         NBT.modify(itemStack, nbt -> {
