@@ -1,6 +1,6 @@
 package com.stardevllc.staritems.cmd;
 
-import com.stardevllc.starcore.StarColors;
+import com.stardevllc.starcore.api.StarColors;
 import com.stardevllc.staritems.StarItems;
 import com.stardevllc.staritems.model.CustomItem;
 import com.stardevllc.staritems.model.ItemRegistry;

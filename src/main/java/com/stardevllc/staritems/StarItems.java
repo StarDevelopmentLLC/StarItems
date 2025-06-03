@@ -1,7 +1,7 @@
 package com.stardevllc.staritems;
 
-import com.stardevllc.starcore.base.wrappers.MCWrappers;
-import com.stardevllc.starcore.base.wrappers.PlayerHandWrapper;
+import com.stardevllc.starcore.api.wrappers.MCWrappers;
+import com.stardevllc.starcore.api.wrappers.PlayerHandWrapper;
 import com.stardevllc.starcore.config.Configuration;
 import com.stardevllc.staritems.cmd.StarItemsCommand;
 import com.stardevllc.staritems.listener.*;
