@@ -28,6 +28,17 @@ repositories {
 }
 
 publishing {
+    repositories {
+        maven {
+            name="stardev"
+            url="https://repo.stardevllc.com/releases"
+            credentials(PasswordCredentials)
+            authentication {
+                basic(BasicAuthentication)
+            }
+        }
+    }
+    
     publications {
         maven(MavenPublication) {
             from components.java
@@ -35,8 +46,8 @@ publishing {
     }
 }
 
-group 'com.github.StarDevelopmentLLC'
-version '0.1.9'
+group 'com.stardevllc'
+version '0.2.0'
 
 dependencies {
     compileOnly 'org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT'
@@ -57,7 +68,11 @@ java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(21)
     }
+
+    withJavadocJar()
+    withSourcesJar()
 }
 
 tasks.compileJava.dependsOn(clean)
 tasks.build.finalizedBy(publishToMavenLocal)
+tasks.build.finalizedBy(publish)
