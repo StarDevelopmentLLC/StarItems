@@ -4,6 +4,7 @@ import com.stardevllc.starcore.api.StarColors;
 import com.stardevllc.staritems.StarItems;
 import com.stardevllc.staritems.model.CustomItem;
 import com.stardevllc.staritems.model.ItemRegistry;
+import com.stardevllc.starlib.dependency.Inject;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -12,11 +13,8 @@ import org.bukkit.inventory.ItemStack;
 
 public class StarItemsCommand implements CommandExecutor {
     
+    @Inject
     private StarItems plugin;
-
-    public StarItemsCommand(StarItems plugin) {
-        this.plugin = plugin;
-    }
 
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {

@@ -1,6 +1,7 @@
 package com.stardevllc.staritems.listener;
 
 import com.stardevllc.staritems.StarItems;
+import com.stardevllc.starlib.dependency.Inject;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -9,12 +10,9 @@ import org.bukkit.event.entity.EntityDeathEvent;
 
 public class EntityListener implements Listener {
     
+    @Inject
     private StarItems plugin;
 
-    public EntityListener(StarItems plugin) {
-        this.plugin = plugin;
-    }
-    
     @EventHandler
     public void onEntityDeath(EntityDeathEvent e) {
         Player killer = e.getEntity().getKiller();

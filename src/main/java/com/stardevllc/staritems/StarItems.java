@@ -7,12 +7,13 @@ import com.stardevllc.staritems.cmd.StarItemsCommand;
 import com.stardevllc.staritems.listener.*;
 import com.stardevllc.staritems.model.ItemRegistry;
 import com.stardevllc.staritems.tasks.InventoryItemTask;
+import com.stardevllc.starmclib.StarMCLib;
+import com.stardevllc.starmclib.plugin.ExtendedJavaPlugin;
 import org.bukkit.plugin.ServicePriority;
-import org.bukkit.plugin.java.JavaPlugin;
 
 import java.io.File;
 
-public class StarItems extends JavaPlugin {
+public class StarItems extends ExtendedJavaPlugin {
     
     private Configuration mainConfig;
     private ItemRegistry itemRegistry;
@@ -20,6 +21,7 @@ public class StarItems extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        super.onEnable();
         this.mainConfig = new Configuration(new File(getDataFolder(), "config.yml"));
         getLogger().info("Initialized the config.yml file");
         
@@ -30,20 +32,18 @@ public class StarItems extends JavaPlugin {
             getLogger().warning("Could not retrieve the player hand wrapper");
         }
         
-        this.itemRegistry = new ItemRegistry(this);
+        this.itemRegistry = getInjector().inject(new ItemRegistry(this));
         getServer().getServicesManager().register(ItemRegistry.class, itemRegistry, this, ServicePriority.Highest);
-        getLogger().info("Registered the ItemRegistry to the ServicesManager");
+        StarMCLib.GLOBAL_INJECTOR.setInstance(this.itemRegistry);
+        getLogger().info("Initialized the ItemRegistry");
         
-        getServer().getPluginManager().registerEvents(new PlayerListener(this), this);
-        getServer().getPluginManager().registerEvents(new BlockListener(this), this);
-        getServer().getPluginManager().registerEvents(new EntityListener(this), this);
+        registerListeners(new PlayerListener(), new BlockListener(), new EntityListener());
         getLogger().info("Registered event handlers");
         
-        getCommand("staritems").setExecutor(new StarItemsCommand(this));
-        getLogger().info("Registered the /staritems command");
+        registerCommand("staritems", new StarItemsCommand());
         
         new InventoryItemTask(this).start();
-        getLogger().info("Started the InventoryItemTask");
+        getLogger().info("StarItems loading complete");
     }
 
     public Configuration getMainConfig() {
