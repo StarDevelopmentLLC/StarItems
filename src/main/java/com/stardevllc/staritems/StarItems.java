@@ -22,6 +22,8 @@ public class StarItems extends ExtendedJavaPlugin {
     @Override
     public void onEnable() {
         super.onEnable();
+        StarMCLib.registerPluginEventBus(getEventBus());
+        StarMCLib.registerPluginInjector(this, getInjector());
         this.mainConfig = new Configuration(new File(getDataFolder(), "config.yml"));
         getLogger().info("Initialized the config.yml file");
         
