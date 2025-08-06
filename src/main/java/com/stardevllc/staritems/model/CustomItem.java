@@ -2,6 +2,7 @@ package com.stardevllc.staritems.model;
 
 import com.stardevllc.starcore.api.StarColors;
 import com.stardevllc.starcore.api.itembuilder.ItemBuilder;
+import com.stardevllc.starcore.api.itembuilder.ItemBuilders;
 import de.tr7zw.nbtapi.NBT;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
@@ -15,7 +16,7 @@ import java.util.function.Consumer;
 public class CustomItem {
     protected JavaPlugin plugin;
     protected String name;
-    protected ItemBuilder itemBuilder;
+    protected ItemBuilder<?, ?> itemBuilder;
     
     protected Set<EventHandler<? extends Event>> eventHandlers = new HashSet<>();
     
@@ -24,7 +25,7 @@ public class CustomItem {
     protected Consumer<Player> whileWearingConsumer;
     protected Consumer<Player> whileHoldingConsumer;
     
-    public CustomItem(JavaPlugin plugin, String name, ItemBuilder itemBuilder) {
+    public CustomItem(JavaPlugin plugin, String name, ItemBuilder<?, ?> itemBuilder) {
         this.plugin = plugin;
         this.name = StarColors.stripColor(name.toLowerCase().replace(" ", "_"));
         this.itemBuilder = itemBuilder;
@@ -32,7 +33,7 @@ public class CustomItem {
     
     public CustomItem(JavaPlugin plugin, ItemStack itemStack) {
         this.plugin = plugin;
-        this.itemBuilder = ItemBuilder.fromItemStack(itemStack);
+        this.itemBuilder = ItemBuilders.of(itemStack);
         this.name = NBT.get(itemStack, nbt -> {
             return nbt.getString("staritemsid");
         });
