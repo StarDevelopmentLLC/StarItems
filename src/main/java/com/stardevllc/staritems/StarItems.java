@@ -1,5 +1,6 @@
 package com.stardevllc.staritems;
 
+import com.electronwill.nightconfig.core.file.FileConfig;
 import com.stardevllc.starcore.api.wrappers.MCWrappers;
 import com.stardevllc.starcore.api.wrappers.PlayerHandWrapper;
 import com.stardevllc.starcore.config.Configuration;
@@ -24,7 +25,7 @@ public class StarItems extends ExtendedJavaPlugin {
         super.onEnable();
         StarMCLib.registerPluginEventBus(getEventBus());
         StarMCLib.registerPluginInjector(this, getInjector());
-        this.mainConfig = new Configuration(new File(getDataFolder(), "config.yml"));
+        this.mainConfig = new Configuration(FileConfig.of(new File(getDataFolder(), "config.toml")));
         getLogger().info("Initialized the config.yml file");
         
         this.playerHandWrapper = getServer().getServicesManager().getRegistration(MCWrappers.class).getProvider().getPlayerHandWrapper();
