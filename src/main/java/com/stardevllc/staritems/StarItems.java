@@ -1,9 +1,9 @@
 package com.stardevllc.staritems;
 
-import com.stardevllc.nightconfig.core.file.FileConfig;
+import com.stardevllc.config.file.FileConfig;
+import com.stardevllc.config.file.yaml.YamlConfig;
 import com.stardevllc.starcore.api.wrappers.MCWrappers;
 import com.stardevllc.starcore.api.wrappers.PlayerHandWrapper;
-import com.stardevllc.starcore.config.Configuration;
 import com.stardevllc.staritems.cmd.StarItemsCommand;
 import com.stardevllc.staritems.listener.*;
 import com.stardevllc.staritems.model.ItemRegistry;
@@ -16,7 +16,7 @@ import java.io.File;
 
 public class StarItems extends ExtendedJavaPlugin {
     
-    private Configuration mainConfig;
+    private FileConfig mainConfig;
     private ItemRegistry itemRegistry;
     private PlayerHandWrapper playerHandWrapper;
 
@@ -25,7 +25,7 @@ public class StarItems extends ExtendedJavaPlugin {
         super.onEnable();
         StarMCLib.registerPluginEventBus(getEventBus());
         StarMCLib.registerPluginInjector(this, getInjector());
-        this.mainConfig = new Configuration(FileConfig.of(new File(getDataFolder(), "config.toml")));
+        this.mainConfig = new YamlConfig(new File(getDataFolder(), "config.yml"));
         getLogger().info("Initialized the config.yml file");
         
         this.playerHandWrapper = getServer().getServicesManager().getRegistration(MCWrappers.class).getProvider().getPlayerHandWrapper();
@@ -49,7 +49,7 @@ public class StarItems extends ExtendedJavaPlugin {
         getLogger().info("StarItems loading complete");
     }
 
-    public Configuration getMainConfig() {
+    public FileConfig getMainConfig() {
         return mainConfig;
     }
 
