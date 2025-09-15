@@ -47,13 +47,13 @@ publishing {
 }
 
 group 'com.stardevllc'
-version '0.2.2'
+version '0.2.1'
 
 dependencies {
     compileOnly 'org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT'
-    compileOnly 'com.stardevllc:StarLib:0.13.0'
-    compileOnly 'com.stardevllc:StarMCLib:0.5.0'
-    compileOnly 'com.stardevllc:StarCore:0.11.0'
+    compileOnly 'com.stardevllc:StarLib:0.14.0'
+    compileOnly 'com.stardevllc:StarMCLib:0.6.0'
+    compileOnly 'com.stardevllc:StarCore:0.10.0'
     compileOnly 'com.stardevllc:config:0.2.0'
     compileOnly 'me.clip:placeholderapi:2.11.5'
     compileOnly 'de.tr7zw:item-nbt-api-plugin:2.15.1'
@@ -76,4 +76,3 @@ java {
 
 tasks.compileJava.dependsOn(clean)
 tasks.build.finalizedBy(publishToMavenLocal)
-tasks.build.finalizedBy(publish)
