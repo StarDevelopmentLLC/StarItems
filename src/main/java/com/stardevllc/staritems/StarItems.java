@@ -2,8 +2,6 @@ package com.stardevllc.staritems;
 
 import com.stardevllc.config.file.FileConfig;
 import com.stardevllc.config.file.yaml.YamlConfig;
-import com.stardevllc.smcversion.MCWrappers;
-import com.stardevllc.smcversion.wrappers.PlayerHandWrapper;
 import com.stardevllc.staritems.cmd.StarItemsCommand;
 import com.stardevllc.staritems.listener.*;
 import com.stardevllc.staritems.model.ItemRegistry;
@@ -18,7 +16,6 @@ public class StarItems extends ExtendedJavaPlugin {
     
     private FileConfig mainConfig;
     private ItemRegistry itemRegistry;
-    private PlayerHandWrapper playerHandWrapper;
 
     @Override
     public void onEnable() {
@@ -27,13 +24,6 @@ public class StarItems extends ExtendedJavaPlugin {
         StarMCLib.registerPluginInjector(this, getInjector());
         this.mainConfig = new YamlConfig(new File(getDataFolder(), "config.yml"));
         getLogger().info("Initialized the config.yml file");
-        
-        this.playerHandWrapper = getServer().getServicesManager().getRegistration(MCWrappers.class).getProvider().getPlayerHandWrapper();
-        if (this.playerHandWrapper != null) {
-            getLogger().info("Retrieved the player hand wrapper: " + this.playerHandWrapper.getClass().getName());
-        } else {
-            getLogger().warning("Could not retrieve the player hand wrapper");
-        }
         
         this.itemRegistry = getInjector().inject(new ItemRegistry(this));
         getServer().getServicesManager().register(ItemRegistry.class, itemRegistry, this, ServicePriority.Highest);
@@ -55,9 +45,5 @@ public class StarItems extends ExtendedJavaPlugin {
 
     public ItemRegistry getItemRegistry() {
         return itemRegistry;
-    }
-
-    public PlayerHandWrapper getPlayerHandWrapper() {
-        return playerHandWrapper;
     }
 }

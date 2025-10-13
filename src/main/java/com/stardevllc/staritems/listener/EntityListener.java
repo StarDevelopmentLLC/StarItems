@@ -1,5 +1,6 @@
 package com.stardevllc.staritems.listener;
 
+import com.stardevllc.smcversion.MCWrappers;
 import com.stardevllc.staritems.StarItems;
 import com.stardevllc.starlib.dependency.Inject;
 import org.bukkit.entity.Player;
@@ -20,7 +21,7 @@ public class EntityListener implements Listener {
             return;
         }
         
-        plugin.getItemRegistry().handleItemEvent(e, plugin.getPlayerHandWrapper().getItemInMainHand(killer));
+        plugin.getItemRegistry().handleItemEvent(e, MCWrappers.getPlayerHandWrapper().getItemInMainHand(killer));
     }
     
     @EventHandler
@@ -29,6 +30,6 @@ public class EntityListener implements Listener {
             return;
         }
 
-        plugin.getItemRegistry().handleItemEvent(e, plugin.getPlayerHandWrapper().getItemInMainHand(player));
+        plugin.getItemRegistry().handleItemEvent(e, MCWrappers.getPlayerHandWrapper().getItemInMainHand(player));
     }
 }

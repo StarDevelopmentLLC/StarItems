@@ -1,5 +1,6 @@
 package com.stardevllc.staritems.listener;
 
+import com.stardevllc.smcversion.MCWrappers;
 import com.stardevllc.staritems.StarItems;
 import com.stardevllc.starlib.dependency.Inject;
 import org.bukkit.event.EventHandler;
@@ -13,6 +14,6 @@ public class BlockListener implements Listener {
 
     @EventHandler
     public void onBlockBreak(BlockBreakEvent e) {
-        plugin.getItemRegistry().handleItemEvent(e, plugin.getPlayerHandWrapper().getItemInMainHand(e.getPlayer()));
+        plugin.getItemRegistry().handleItemEvent(e, MCWrappers.getPlayerHandWrapper().getItemInMainHand(e.getPlayer()));
     }
 }

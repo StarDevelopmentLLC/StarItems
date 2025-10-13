@@ -1,5 +1,6 @@
 package com.stardevllc.staritems.tasks;
 
+import com.stardevllc.smcversion.MCWrappers;
 import com.stardevllc.starcore.utils.StarThread;
 import com.stardevllc.staritems.StarItems;
 import com.stardevllc.staritems.model.CustomItem;
@@ -21,14 +22,14 @@ public class InventoryItemTask extends StarThread<StarItems> {
         for (Player player : Bukkit.getOnlinePlayers()) {
             PlayerInventory inv = player.getInventory();
             
-            CustomItem mainHandItem = getCustomItem(plugin.getPlayerHandWrapper().getItemInMainHand(player));
+            CustomItem mainHandItem = getCustomItem(MCWrappers.getPlayerHandWrapper().getItemInMainHand(player));
             if (mainHandItem != null) {
                 if (mainHandItem.getWhileHoldingConsumer() != null) {
                     mainHandItem.getWhileHoldingConsumer().accept(player);
                 }
             }
             
-            CustomItem offHandItem = getCustomItem(plugin.getPlayerHandWrapper().getItemInOffHand(player));
+            CustomItem offHandItem = getCustomItem(MCWrappers.getPlayerHandWrapper().getItemInOffHand(player));
             if (offHandItem != null) {
                 if (offHandItem.getWhileHoldingConsumer() != null) {
                     offHandItem.getWhileHoldingConsumer().accept(player);
