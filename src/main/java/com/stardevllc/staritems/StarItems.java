@@ -1,7 +1,5 @@
 package com.stardevllc.staritems;
 
-import com.stardevllc.config.file.FileConfig;
-import com.stardevllc.config.file.yaml.YamlConfig;
 import com.stardevllc.staritems.cmd.StarItemsCommand;
 import com.stardevllc.staritems.listener.*;
 import com.stardevllc.staritems.model.ItemRegistry;
@@ -10,11 +8,8 @@ import com.stardevllc.starmclib.StarMCLib;
 import com.stardevllc.starmclib.plugin.ExtendedJavaPlugin;
 import org.bukkit.plugin.ServicePriority;
 
-import java.io.File;
-
 public class StarItems extends ExtendedJavaPlugin {
     
-    private FileConfig mainConfig;
     private ItemRegistry itemRegistry;
 
     @Override
@@ -22,7 +17,6 @@ public class StarItems extends ExtendedJavaPlugin {
         super.onEnable();
         StarMCLib.registerPluginEventBus(getEventBus());
         StarMCLib.registerPluginInjector(this, getInjector());
-        this.mainConfig = new YamlConfig(new File(getDataFolder(), "config.yml"));
         getLogger().info("Initialized the config.yml file");
         
         this.itemRegistry = getInjector().inject(new ItemRegistry(this));
@@ -33,14 +27,10 @@ public class StarItems extends ExtendedJavaPlugin {
         registerListeners(new PlayerListener(), new BlockListener(), new EntityListener());
         getLogger().info("Registered event handlers");
         
-        registerCommand("staritems", new StarItemsCommand());
+        registerCommand("staritems", getInjector().inject(new StarItemsCommand()));
         
         new InventoryItemTask(this).start();
         getLogger().info("StarItems loading complete");
-    }
-
-    public FileConfig getMainConfig() {
-        return mainConfig;
     }
 
     public ItemRegistry getItemRegistry() {

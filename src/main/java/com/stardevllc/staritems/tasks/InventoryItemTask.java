@@ -1,10 +1,10 @@
 package com.stardevllc.staritems.tasks;
 
 import com.stardevllc.smcversion.MCWrappers;
-import com.stardevllc.starcore.utils.StarThread;
 import com.stardevllc.staritems.StarItems;
 import com.stardevllc.staritems.model.CustomItem;
 import com.stardevllc.starlib.helper.StringHelper;
+import com.stardevllc.starmclib.StarThread;
 import de.tr7zw.nbtapi.NBT;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -53,7 +53,7 @@ public class InventoryItemTask extends StarThread<StarItems> {
                     continue;
                 }
 
-                if (i >= 0 && i <= 8) { //Hotbar check
+                if (i <= 8) { //Hotbar check
                     if (customItem.getWhileOnHotbarConsumer() != null) {
                         customItem.getWhileOnHotbarConsumer().accept(player);
                     }

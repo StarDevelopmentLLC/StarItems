@@ -2,8 +2,8 @@ package com.stardevllc.staritems.model;
 
 import com.stardevllc.itembuilder.ItemBuilders;
 import com.stardevllc.itembuilder.common.ItemBuilder;
-import com.stardevllc.starcore.api.StarColors;
 import de.tr7zw.nbtapi.NBT;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
@@ -12,8 +12,11 @@ import org.bukkit.plugin.java.JavaPlugin;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.function.Consumer;
+import java.util.function.Function;
 
 public class CustomItem {
+    public static Function<String, String> stripColorFunction = ChatColor::stripColor;
+    
     protected JavaPlugin plugin;
     protected String name;
     protected ItemBuilder<?, ?> itemBuilder;
@@ -27,7 +30,7 @@ public class CustomItem {
     
     public CustomItem(JavaPlugin plugin, String name, ItemBuilder<?, ?> itemBuilder) {
         this.plugin = plugin;
-        this.name = StarColors.stripColor(name.toLowerCase().replace(" ", "_"));
+        this.name = stripColorFunction.apply(name.toLowerCase().replace(" ", "_"));
         this.itemBuilder = itemBuilder;
     }
     
@@ -39,16 +42,15 @@ public class CustomItem {
         });
     }
     
-    public <T extends Event> void addEventHandler(EventType<T> type, EventHandler<? extends T> listener) {
+    public <T extends Event> void addEventHandler(T eventType, EventHandler<T> listener) {
         eventHandlers.add(listener);
     }
     
     public <T extends Event> void handleEvent(T event) {
-        for (EventHandler eventHandler : this.eventHandlers) {
+        for (EventHandler<?> eventHandler : this.eventHandlers) {
             try {
-                eventHandler.onEvent(event);
-            } catch (Throwable throwable) {
-            }
+                ((EventHandler<T>) eventHandler).onEvent(event);
+            } catch (Throwable throwable) {}
         }
     }
     
