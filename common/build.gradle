@@ -1,0 +1,26 @@
+plugins {
+    id 'java-library'
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven { url = 'https://repo.stardevllc.com/releases'}
+    maven { url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'}
+    maven { url = 'https://repo.extendedclip.com/content/repositories/placeholderapi/'}
+    maven { url = 'https://repo.codemc.org/repository/maven-public/'}
+}
+
+dependencies {
+    compileOnly 'org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT'
+    compileOnly 'com.stardevllc:StarMCLib:0.8.0'
+    compileOnly 'com.stardevllc:ItemBuilder:0.1.0'
+    compileOnly 'me.clip:placeholderapi:2.11.5'
+    compileOnly 'de.tr7zw:item-nbt-api-plugin:2.15.3'
+}
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(21)
+    }
+}

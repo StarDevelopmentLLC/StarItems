@@ -3,3 +3,6 @@ plugins {
 }
 
 rootProject.name = 'StarItems'
+include('common')
+include('plugin')
+include('standalone')

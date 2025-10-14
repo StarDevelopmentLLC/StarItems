@@ -11,9 +11,10 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
+import org.bukkit.plugin.java.JavaPlugin;
 
-public class InventoryItemTask extends StarThread<StarItems> {
-    public InventoryItemTask(StarItems plugin) {
+public class InventoryItemTask extends StarThread<JavaPlugin> {
+    public InventoryItemTask(JavaPlugin plugin) {
         super(plugin, 20L, 1L, false);
     }
 
@@ -79,6 +80,6 @@ public class InventoryItemTask extends StarThread<StarItems> {
             return null;
         }
         
-        return plugin.getItemRegistry().get(id);
+        return StarItems.getItemRegistry().get(id);
     }
 }

@@ -1,6 +1,9 @@
+import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+
 plugins {
     id 'java-library'
     id 'maven-publish'
+    id 'com.gradleup.shadow' version '9.2.2'
 }
 
 repositories {
@@ -41,7 +44,7 @@ publishing {
     
     publications {
         maven(MavenPublication) {
-            from components.java
+            from components.shadow
         }
     }
 }
@@ -50,11 +53,16 @@ group = 'com.stardevllc'
 version = '0.3.0'
 
 dependencies {
-    compileOnly 'org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT'
-    compileOnly 'com.stardevllc:StarMCLib:0.8.0'
-    compileOnly 'com.stardevllc:ItemBuilder:0.1.0'
-    compileOnly 'me.clip:placeholderapi:2.11.5'
-    compileOnly 'de.tr7zw:item-nbt-api-plugin:2.15.1'
+    implementation project(':common')
+    implementation "com.stardevllc:ItemBuilder:${itembuilderVersion}"
+    compileOnly "org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT"
+    compileOnly "com.stardevllc:StarMCLib:${starmclibVersion}"
+    compileOnly "me.clip:placeholderapi:${papiVersion}"
+    compileOnly "de.tr7zw:item-nbt-api-plugin:${nbtapiVersion}"
+}
+
+tasks.named('shadowJar', ShadowJar) {
+    archiveClassifier = ''
 }
 
 processResources {
@@ -67,10 +75,16 @@ java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(21)
     }
-
-    withJavadocJar()
-    withSourcesJar()
 }
 
 tasks.compileJava.dependsOn(clean)
+tasks.jar.finalizedBy(shadowJar)
 tasks.build.finalizedBy(publishToMavenLocal)
+
+tasks.withType(PublishToMavenLocal).configureEach {
+    dependsOn(shadowJar)
+}
+
+tasks.withType(PublishToMavenRepository).configureEach {
+    dependsOn(shadowJar)
+}

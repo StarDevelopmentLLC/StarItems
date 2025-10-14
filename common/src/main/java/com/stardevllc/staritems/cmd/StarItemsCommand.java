@@ -3,18 +3,19 @@ package com.stardevllc.staritems.cmd;
 import com.stardevllc.staritems.StarItems;
 import com.stardevllc.staritems.model.CustomItem;
 import com.stardevllc.staritems.model.ItemRegistry;
-import com.stardevllc.starlib.dependency.Inject;
-import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
-import org.bukkit.command.CommandSender;
+import com.stardevllc.starmclib.plugin.ExtendedJavaPlugin;
+import org.bukkit.command.*;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 public class StarItemsCommand implements CommandExecutor {
     
-    @Inject
-    private StarItems plugin;
-
+    private ExtendedJavaPlugin plugin;
+    
+    public StarItemsCommand(ExtendedJavaPlugin plugin) {
+        this.plugin = plugin;
+    }
+    
     @Override
     public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
         if (!sender.hasPermission("staritems.admin")) {
@@ -33,7 +34,7 @@ public class StarItemsCommand implements CommandExecutor {
                 plugin.getColors().coloredLegacy(sender, "&cYou don't have permission to use this command!");
                 return true;
             }
-            ItemRegistry registry = plugin.getItemRegistry();
+            ItemRegistry registry = StarItems.getItemRegistry();
             
             if (registry.getObjects().isEmpty()) {
                 plugin.getColors().coloredLegacy(sender, "&cThere are no items registered to StarItems.");
@@ -61,7 +62,7 @@ public class StarItemsCommand implements CommandExecutor {
                 return true;
             }
             
-            CustomItem customItem = plugin.getItemRegistry().get(args[1]);
+            CustomItem customItem = StarItems.getItemRegistry().get(args[1]);
             if (customItem == null) {
                 plugin.getColors().coloredLegacy(sender, "&cYou provided an invalid item id.");
                 return true;
