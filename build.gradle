@@ -30,6 +30,9 @@ repositories {
     maven { url = 'https://oss.sonatype.org/content/repositories/snapshots' }
 }
 
+group = 'com.stardevllc'
+version = '0.3.0'
+
 publishing {
     repositories {
         maven {
@@ -45,12 +48,17 @@ publishing {
     publications {
         maven(MavenPublication) {
             from components.shadow
+            
+            artifact ("build/libs/${project.name}-${project.version}-javadoc.jar") {
+                classifier = "javadoc"
+            }
+
+            artifact ("build/libs/${project.name}-${project.version}-sources.jar") {
+                classifier = "sources"
+            }
         }
     }
 }
-
-group = 'com.stardevllc'
-version = '0.3.0'
 
 dependencies {
     implementation project(':common')
@@ -75,6 +83,34 @@ java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(21)
     }
+
+    withJavadocJar()
+    withSourcesJar()
+}
+
+tasks.named("javadoc", Javadoc) {
+    subprojects { subproject ->
+        source += subproject.sourceSets.main.allJava
+    }
+//    source += project.sourceSets.main.allJava
+
+    subprojects { subproject ->
+        classpath += subproject.sourceSets.main.compileClasspath
+        classpath += subproject.sourceSets.main.runtimeClasspath
+    }
+
+//    classpath += project.sourceSets.main.compileClasspath
+}
+
+tasks.named('sourcesJar', Jar) {
+    archiveClassifier.set("sources")
+//    from sourceSets.main.allSource
+
+    subprojects { subproject ->
+        from subproject.sourceSets.main.allSource
+    }
+    
+    exclude('plugin.yml')
 }
 
 tasks.compileJava.dependsOn(clean)
@@ -83,8 +119,12 @@ tasks.build.finalizedBy(publishToMavenLocal)
 
 tasks.withType(PublishToMavenLocal).configureEach {
     dependsOn(shadowJar)
+    dependsOn(javadocJar)
+    dependsOn(sourcesJar)
 }
 
 tasks.withType(PublishToMavenRepository).configureEach {
     dependsOn(shadowJar)
+    dependsOn(javadocJar)
+    dependsOn(sourcesJar)
 }
