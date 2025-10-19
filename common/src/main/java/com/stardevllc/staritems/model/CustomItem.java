@@ -42,7 +42,7 @@ public class CustomItem {
         });
     }
     
-    public <T extends Event> void addEventHandler(T eventType, EventHandler<T> listener) {
+    public <T extends Event> void addEventHandler(Class<T> eventType, EventHandler<T> listener) {
         eventHandlers.add(listener);
     }
     
