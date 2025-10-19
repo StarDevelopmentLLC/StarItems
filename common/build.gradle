@@ -12,11 +12,11 @@ repositories {
 }
 
 dependencies {
-    compileOnly 'org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT'
-    compileOnly 'com.stardevllc:StarMCLib:0.8.0'
-    compileOnly 'com.stardevllc:ItemBuilder:0.1.0'
-    compileOnly 'me.clip:placeholderapi:2.11.5'
-    compileOnly 'de.tr7zw:item-nbt-api-plugin:2.15.3'
+    compileOnly "org.spigotmc:spigot-api:${spigotVersion}"
+    compileOnly "com.stardevllc:StarMCLib:${starmclibVersion}"
+    compileOnly "com.stardevllc:ItemBuilder:${itembuilderVersion}"
+    compileOnly "me.clip:placeholderapi:${papiVersion}"
+    compileOnly "de.tr7zw:item-nbt-api-plugin:${nbtapiVersion}"
 }
 
 java {
