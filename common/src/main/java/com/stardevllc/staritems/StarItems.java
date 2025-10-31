@@ -30,7 +30,7 @@ public final class StarItems {
         StarItems.plugin = plugin;
         itemRegistry = new ItemRegistry(plugin);
         Bukkit.getServer().getServicesManager().register(ItemRegistry.class, itemRegistry, plugin, ServicePriority.Highest);
-        StarMCLib.GLOBAL_INJECTOR.setInstance(itemRegistry);
+        StarMCLib.GLOBAL_INJECTOR.set(itemRegistry);
         
         PluginManager pluginManager = Bukkit.getPluginManager();
         pluginManager.registerEvents(new PlayerListener(), plugin);
