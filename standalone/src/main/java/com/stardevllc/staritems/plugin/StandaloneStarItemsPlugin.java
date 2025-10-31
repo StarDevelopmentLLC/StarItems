@@ -8,8 +8,8 @@ import com.stardevllc.starmclib.plugin.ExtendedJavaPlugin;
 public class StandaloneStarItemsPlugin extends ExtendedJavaPlugin {
     @Override
     public void onEnable() {
-        super.onEnable();
         StarMCLib.init(this);
+        super.onEnable();
         StarItems.init(this);
         registerCommand("staritems", new StarItemsCommand(this));
     }
