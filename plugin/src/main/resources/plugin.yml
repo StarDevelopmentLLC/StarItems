@@ -3,6 +3,6 @@ version: ${version}
 api-version: 1.13
 name: ${rootProject.name}
 author: Firestar311
-depend: [NBTAPI]
+depend: [NBTAPI, StarMCLib]
 commands: 
   staritems: 

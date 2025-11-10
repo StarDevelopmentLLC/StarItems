@@ -13,6 +13,7 @@ repositories {
 
 dependencies {
     compileOnly "org.spigotmc:spigot-api:${spigotVersion}"
+    compileOnly "com.stardevllc:SMaterial:${smaterialVersion}"
     compileOnly "com.stardevllc:StarMCLib:${starmclibVersion}"
     compileOnly "com.stardevllc:ItemBuilder:${itembuilderVersion}"
     compileOnly "me.clip:placeholderapi:${papiVersion}"
