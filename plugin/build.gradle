@@ -3,7 +3,6 @@ import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 plugins {
     id 'java-library'
     id 'com.gradleup.shadow' version '9.2.2'
-    id 'xyz.kyngs.libby.plugin' version '2.0.1'
 }
 
 version = rootProject.version
@@ -18,11 +17,10 @@ repositories {
 }
 
 dependencies {
-    implementation("com.stardevllc.libby:libby-bukkit:1.0.1")
     implementation project(':common')
     compileOnly "com.stardevllc:StarMCLib:${starmclibVersion}"
-    libby "com.stardevllc:ItemBuilder:${itembuilderVersion}"
-    libby "com.stardevllc:SMaterial:${smaterialVersion}"
+    implementation "com.stardevllc:ItemBuilder:${itembuilderVersion}"
+    implementation "com.stardevllc:SMaterial:${smaterialVersion}"
     compileOnly "org.spigotmc:spigot-api:${spigotVersion}"
     compileOnly "me.clip:placeholderapi:${papiVersion}"
     compileOnly "de.tr7zw:item-nbt-api-plugin:${nbtapiVersion}"
@@ -39,8 +37,8 @@ tasks.named('shadowJar', ShadowJar) {
     archiveBaseName = 'StarItems'
     destinationDirectory = rootProject.layout.buildDirectory.dir("libs")
 
-    relocate("net.byteflux.libby", "com.stardevllc.staritems.libby")
-    relocate('com.grack', 'com.stardevllc.staritems.grack')
+//    relocate("net.byteflux.libby", "com.stardevllc.staritems.libby")
+//    relocate('com.grack', 'com.stardevllc.staritems.grack')
 }
 
 java {

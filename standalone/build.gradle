@@ -3,7 +3,6 @@ import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
 plugins {
     id 'java-library'
     id 'com.gradleup.shadow' version '9.2.2'
-    id 'xyz.kyngs.libby.plugin' version '2.0.1'
 }
 
 version = rootProject.version
@@ -18,26 +17,20 @@ repositories {
 }
 
 dependencies {
-    implementation("com.stardevllc.libby:libby-bukkit:1.0.1")
     implementation project(':common')
     implementation "com.stardevllc:StarMCLib:${starmclibVersion}"
-    libby "com.stardevllc:StarLib:${starlibVersion}"
-    libby "com.stardevllc:ItemBuilder:${itembuilderVersion}"
-    libby "com.stardevllc:SMaterial:${smaterialVersion}"
+    implementation "com.stardevllc:StarLib:${starlibVersion}"
+    implementation "com.stardevllc:ItemBuilder:${itembuilderVersion}"
+    implementation "com.stardevllc:SMaterial:${smaterialVersion}"
     compileOnly "org.spigotmc:spigot-api:${spigotVersion}"
     compileOnly "me.clip:placeholderapi:${papiVersion}"
     compileOnly "de.tr7zw:item-nbt-api-plugin:${nbtapiVersion}"
 
-    libby "com.google.code.gson:gson:${gsonVersion}"
-    libby "net.kyori:adventure-api:${adventureVersion}"
-    libby "net.kyori:adventure-platform-bukkit:${adventureBukkitVersion}"
-    libby "net.kyori:adventure-text-minimessage:${miniMessageVersion}"
-    libby "org.yaml:snakeyaml:${snakeymlVersion}"
-}
-
-libby {
-    excludeDependency("com.google.errorprone:.*:.*")
-    excludeDependency("org.jetbrains:.*:.*")
+    implementation "com.google.code.gson:gson:${gsonVersion}"
+    implementation "net.kyori:adventure-api:${adventureVersion}"
+    implementation "net.kyori:adventure-platform-bukkit:${adventureBukkitVersion}"
+    implementation "net.kyori:adventure-text-minimessage:${miniMessageVersion}"
+    implementation "org.yaml:snakeyaml:${snakeymlVersion}"
 }
 
 processResources {
@@ -51,15 +44,14 @@ tasks.named('shadowJar', ShadowJar) {
     archiveBaseName = 'StarItems'
     destinationDirectory = rootProject.layout.buildDirectory.dir("libs")
 
+    dependencies {
+        exclude(dependency("org.jetbrains:annotations:.*"))
+        exclude(dependency("com.google.errorprone:error_prone_annotations:.*"))
+    }
+    
     relocate('net.kyori', 'com.stardevllc.kyori')
     relocate('com.google.gson', 'com.stardevllc.gson')
     relocate('org.yaml.snakeyaml', 'com.stardevllc.snakeyaml')
-
-    relocate("net.byteflux.libby", "com.stardevllc.staritems.libby")
-    relocate('com.grack', 'com.stardevllc.staritems.grack')
-    relocate('com.stardevllc.config', 'com.stardevllc.staritems.config')
-    relocate('com.stardevllc.smcversion', 'com.stardevllc.staritems.smcversion')
-    relocate('com.stardevllc.starmclib', 'com.stardevllc.staritems.starmclib')
 }
 
 java {
