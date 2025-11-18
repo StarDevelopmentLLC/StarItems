@@ -3,6 +3,7 @@ package com.stardevllc.staritems.cmd;
 import com.stardevllc.staritems.StarItems;
 import com.stardevllc.staritems.model.CustomItem;
 import com.stardevllc.staritems.model.ItemRegistry;
+import com.stardevllc.starlib.objects.registry.RegistryObject;
 import com.stardevllc.starmclib.plugin.ExtendedJavaPlugin;
 import org.bukkit.command.*;
 import org.bukkit.entity.Player;
@@ -36,13 +37,14 @@ public class StarItemsCommand implements CommandExecutor {
             }
             ItemRegistry registry = StarItems.getItemRegistry();
             
-            if (registry.getObjects().isEmpty()) {
+            if (registry.isEmpty()) {
                 plugin.getColors().coloredLegacy(sender, "&cThere are no items registered to StarItems.");
                 return true;
             }
 
             plugin.getColors().coloredLegacy(sender, "&aList of registered items.");
-            for (CustomItem customItem : registry) {
+            for (RegistryObject<String, CustomItem> object : registry) {
+                CustomItem customItem = object.get();
                 plugin.getColors().coloredLegacy(sender, "  &8- &a" + customItem.getName() + " &7[&d" + customItem.getPlugin() + "&7]");
             }
             return true;

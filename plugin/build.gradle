@@ -36,9 +36,6 @@ tasks.named('shadowJar', ShadowJar) {
     archiveClassifier = 'plugin'
     archiveBaseName = 'StarItems'
     destinationDirectory = rootProject.layout.buildDirectory.dir("libs")
-
-//    relocate("net.byteflux.libby", "com.stardevllc.staritems.libby")
-//    relocate('com.grack', 'com.stardevllc.staritems.grack')
 }
 
 java {

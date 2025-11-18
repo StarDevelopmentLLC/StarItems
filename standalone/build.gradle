@@ -19,18 +19,10 @@ repositories {
 dependencies {
     implementation project(':common')
     implementation "com.stardevllc:StarMCLib:${starmclibVersion}"
-    implementation "com.stardevllc:StarLib:${starlibVersion}"
     implementation "com.stardevllc:ItemBuilder:${itembuilderVersion}"
-    implementation "com.stardevllc:SMaterial:${smaterialVersion}"
     compileOnly "org.spigotmc:spigot-api:${spigotVersion}"
     compileOnly "me.clip:placeholderapi:${papiVersion}"
     compileOnly "de.tr7zw:item-nbt-api-plugin:${nbtapiVersion}"
-
-    implementation "com.google.code.gson:gson:${gsonVersion}"
-    implementation "net.kyori:adventure-api:${adventureVersion}"
-    implementation "net.kyori:adventure-platform-bukkit:${adventureBukkitVersion}"
-    implementation "net.kyori:adventure-text-minimessage:${miniMessageVersion}"
-    implementation "org.yaml:snakeyaml:${snakeymlVersion}"
 }
 
 processResources {
@@ -48,10 +40,6 @@ tasks.named('shadowJar', ShadowJar) {
         exclude(dependency("org.jetbrains:annotations:.*"))
         exclude(dependency("com.google.errorprone:error_prone_annotations:.*"))
     }
-    
-    relocate('net.kyori', 'com.stardevllc.kyori')
-    relocate('com.google.gson', 'com.stardevllc.gson')
-    relocate('org.yaml.snakeyaml', 'com.stardevllc.snakeyaml')
 }
 
 java {

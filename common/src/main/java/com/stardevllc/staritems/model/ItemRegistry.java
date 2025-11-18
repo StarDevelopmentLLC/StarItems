@@ -1,17 +1,22 @@
 package com.stardevllc.staritems.model;
 
 import com.stardevllc.starlib.helper.StringHelper;
-import com.stardevllc.starlib.registry.StringRegistry;
+import com.stardevllc.starlib.objects.registry.Registry;
 import de.tr7zw.nbtapi.NBT;
 import org.bukkit.Material;
 import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class ItemRegistry extends StringRegistry<CustomItem> {
+public class ItemRegistry extends Registry<String, CustomItem> {
     public ItemRegistry(JavaPlugin plugin) {
         super(null, null, CustomItem::getName, null, null);
-        addRegisterListener((s, customItem) -> plugin.getLogger().info("Registered the item " + customItem.getName() + " from the plugin " + customItem.getPlugin().getName() + " v" + customItem.getPlugin().getDescription().getVersion()));
+        addChangeListener(c -> {
+            CustomItem customItem = c.added();
+            if (customItem != null) {
+                plugin.getLogger().info("Registered the item " + customItem.getName() + " from the plugin " + customItem.getPlugin().getName() + " v" + customItem.getPlugin().getDescription().getVersion());
+            }
+        });
     }
     
     public void handleItemEvent(Event event, ItemStack... itemStacks) {
