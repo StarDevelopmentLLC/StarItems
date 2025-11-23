@@ -11,7 +11,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class ItemRegistry extends Registry<String, CustomItem> {
     public ItemRegistry(JavaPlugin plugin) {
         super(null, null, CustomItem::getName, null, null);
-        addChangeListener(c -> {
+        addListener(c -> {
             CustomItem customItem = c.added();
             if (customItem != null) {
                 plugin.getLogger().info("Registered the item " + customItem.getName() + " from the plugin " + customItem.getPlugin().getName() + " v" + customItem.getPlugin().getDescription().getVersion());
