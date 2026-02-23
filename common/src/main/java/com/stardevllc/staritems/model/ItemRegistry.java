@@ -1,25 +1,34 @@
 package com.stardevllc.staritems.model;
 
+import com.stardevllc.starlib.eventbus.BusDispatcher;
+import com.stardevllc.starlib.eventbus.impl.StarEventBus;
 import com.stardevllc.starlib.helper.StringHelper;
-import com.stardevllc.starlib.objects.registry.Registry;
+import com.stardevllc.starlib.registry.AbstractRegistry;
+import com.stardevllc.starlib.registry.RegistryKey;
 import de.tr7zw.nbtapi.NBT;
 import org.bukkit.Material;
-import org.bukkit.event.Event;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class ItemRegistry extends Registry<String, CustomItem> {
+import java.util.HashMap;
+import java.util.Map;
+
+public class ItemRegistry extends AbstractRegistry<CustomItem> {
     public ItemRegistry(JavaPlugin plugin) {
-        super(null, null, CustomItem::getName, null, null);
-        addListener(c -> {
-            CustomItem customItem = c.added();
-            if (customItem != null) {
-                plugin.getLogger().info("Registered the item " + customItem.getName() + " from the plugin " + customItem.getPlugin().getName() + " v" + customItem.getPlugin().getDescription().getVersion());
-            }
-        });
+        super(RegistryKey.of("customitems"), "Custom Items", new HashMap<>());
+        
+        //This event bus is just used internally for the Registry Events themselves to allow listening for them
+        setDispatcher(new BusDispatcher<>(new StarEventBus<>(ItemRegistry.Event.class)));
+        
+        addRegisterListener(e -> plugin.getLogger().info("Registered the item " + e.value().getName() + " from the plugin " + e.value().getPlugin().getName() + " v" + e.value().getPlugin().getDescription().getVersion()));
     }
     
-    public void handleItemEvent(Event event, ItemStack... itemStacks) {
+    @Override
+    public Map<RegistryKey, CustomItem> toMapCopy() {
+        return new HashMap<>(this.backingMap);
+    }
+    
+    public void handleItemEvent(org.bukkit.event.Event event, ItemStack... itemStacks) {
         if (itemStacks == null) {
             return;
         }
