@@ -1,7 +1,6 @@
 package com.stardevllc.staritems.model;
 
-import com.stardevllc.starlib.eventbus.BusDispatcher;
-import com.stardevllc.starlib.eventbus.impl.StarEventBus;
+import com.stardevllc.starlib.event.bus.ReflectionEventBus;
 import com.stardevllc.starlib.helper.StringHelper;
 import com.stardevllc.starlib.registry.AbstractRegistry;
 import com.stardevllc.starlib.registry.RegistryKey;
@@ -11,21 +10,15 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.util.HashMap;
-import java.util.Map;
 
 public class ItemRegistry extends AbstractRegistry<CustomItem> {
     public ItemRegistry(JavaPlugin plugin) {
-        super(RegistryKey.of("customitems"), "Custom Items", new HashMap<>());
+        super(CustomItem.class, RegistryKey.of("customitems"), "Custom Items", new HashMap<>());
         
         //This event bus is just used internally for the Registry Events themselves to allow listening for them
-        setDispatcher(new BusDispatcher<>(new StarEventBus<>(ItemRegistry.Event.class)));
+        setDispatcher(new ReflectionEventBus());
         
         addRegisterListener(e -> plugin.getLogger().info("Registered the item " + e.value().getName() + " from the plugin " + e.value().getPlugin().getName() + " v" + e.value().getPlugin().getDescription().getVersion()));
-    }
-    
-    @Override
-    public Map<RegistryKey, CustomItem> toMapCopy() {
-        return new HashMap<>(this.backingMap);
     }
     
     public void handleItemEvent(org.bukkit.event.Event event, ItemStack... itemStacks) {
