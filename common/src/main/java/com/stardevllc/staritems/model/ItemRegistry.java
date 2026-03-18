@@ -1,6 +1,5 @@
 package com.stardevllc.staritems.model;
 
-import com.stardevllc.starlib.event.bus.ReflectionEventBus;
 import com.stardevllc.starlib.helper.StringHelper;
 import com.stardevllc.starlib.registry.AbstractRegistry;
 import com.stardevllc.starlib.registry.RegistryKey;
@@ -13,11 +12,7 @@ import java.util.HashMap;
 
 public class ItemRegistry extends AbstractRegistry<CustomItem> {
     public ItemRegistry(JavaPlugin plugin) {
-        super(CustomItem.class, RegistryKey.of("customitems"), "Custom Items", new HashMap<>());
-        
-        //This event bus is just used internally for the Registry Events themselves to allow listening for them
-        setDispatcher(new ReflectionEventBus());
-        
+        super(CustomItem.class, RegistryKey.of("customitems"), "Custom Items", new HashMap<>(), null);
         addRegisterListener(e -> plugin.getLogger().info("Registered the item " + e.value().getName() + " from the plugin " + e.value().getPlugin().getName() + " v" + e.value().getPlugin().getDescription().getVersion()));
     }
     
