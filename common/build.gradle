@@ -12,10 +12,19 @@ repositories {
 }
 
 dependencies {
+    api project(":itembuilder")
+    api project(':v1_8')
+    api project(':v1_13')
+    api project(':v1_13_2')
+    api project(':v1_14_4')
+    api project(':v1_16_1')
+    api project(':v1_17_1')
+    api project(':v1_19_3')
+    api project(':v1_20_1')
+    api project(':v1_21_1')
     compileOnly "org.spigotmc:spigot-api:${spigotVersion}"
     compileOnly "com.stardevllc:SMaterial:${smaterialVersion}"
     compileOnly "com.stardevllc:StarMCLib:${starmclibVersion}"
-    compileOnly "com.stardevllc:ItemBuilder:${itembuilderVersion}"
     compileOnly "me.clip:placeholderapi:${papiVersion}"
     compileOnly "de.tr7zw:item-nbt-api-plugin:${nbtapiVersion}"
 }

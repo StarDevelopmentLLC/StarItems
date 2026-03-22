@@ -19,7 +19,6 @@ repositories {
 dependencies {
     implementation project(':common')
     compileOnly "com.stardevllc:StarMCLib:${starmclibVersion}"
-    implementation "com.stardevllc:ItemBuilder:${itembuilderVersion}"
     implementation "com.stardevllc:SMaterial:${smaterialVersion}"
     compileOnly "org.spigotmc:spigot-api:${spigotVersion}"
     compileOnly "me.clip:placeholderapi:${papiVersion}"

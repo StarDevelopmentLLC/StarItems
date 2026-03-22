@@ -1,7 +1,7 @@
 package com.stardevllc.staritems.model;
 
-import com.stardevllc.itembuilder.ItemBuilders;
 import com.stardevllc.itembuilder.common.ItemBuilder;
+import com.stardevllc.staritems.ItemBuilders;
 import de.tr7zw.nbtapi.NBT;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;

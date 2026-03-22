@@ -31,7 +31,7 @@ repositories {
 }
 
 group = 'com.stardevllc'
-version = '0.6.0'
+version = '0.7.0'
 
 publishing {
     repositories {
@@ -62,8 +62,7 @@ publishing {
 
 dependencies {
     implementation project(':common')
-    implementation "com.stardevllc:ItemBuilder:${itembuilderVersion}"
-    compileOnly "org.spigotmc:spigot-api:1.8.8-R0.1-SNAPSHOT"
+    compileOnly "org.spigotmc:spigot-api:${spigotVersion}"
     compileOnly "com.stardevllc:StarMCLib:${starmclibVersion}"
     compileOnly "me.clip:placeholderapi:${papiVersion}"
     compileOnly "de.tr7zw:item-nbt-api-plugin:${nbtapiVersion}"
