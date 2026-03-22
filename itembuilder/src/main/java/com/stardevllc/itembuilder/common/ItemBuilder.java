@@ -7,6 +7,7 @@ import com.stardevllc.starlib.objects.builder.IBuilder;
 import com.stardevllc.starlib.reflection.ReflectionHelper;
 import com.stardevllc.starlib.serialization.StarSerializable;
 import de.tr7zw.nbtapi.NBT;
+import de.tr7zw.nbtapi.iface.ReadWriteNBT;
 import de.tr7zw.nbtapi.iface.ReadableNBT;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Bukkit;
@@ -150,13 +151,12 @@ public abstract class ItemBuilder<I extends ItemBuilder<I, M>, M extends ItemMet
         this.material = material;
     }
     
-    //TODO Enchantments and Attributes will not save or load correctly, mostly just a placeholder for now
-    //Will probably make something similar to SMaterial for enchants
+    //TODO Implement Saving and Loading of Enchantments and Attributes, will probably make a utility like SMaterial
     public ItemBuilder(Map<String, Object> serialized) {
         this.material = (SMaterial) serialized.get("material");
         this.amount = (int) serialized.get("amount");
-        this.attributes = (Map<String, AttributeModifierWrapper>) serialized.get("attributes");
-        this.enchantments = (Map<Enchantment, Integer>) serialized.get("enchantments");
+//        this.attributes = (Map<String, AttributeModifierWrapper>) serialized.get("attributes");
+//        this.enchantments = (Map<Enchantment, Integer>) serialized.get("enchantments");
         this.itemFlags = (List<ItemFlag>) serialized.get("flags");
         this.displayName = (String) serialized.get("displayname");
         this.lore = (List<String>) serialized.get("lore");
@@ -171,7 +171,7 @@ public abstract class ItemBuilder<I extends ItemBuilder<I, M>, M extends ItemMet
         serialized.put("material", material);
         serialized.put("amount", amount);
         serialized.put("attributes", attributes);
-        serialized.put("enchantments", enchantments);
+//        serialized.put("enchantments", enchantments);
         serialized.put("flags", itemFlags);
         serialized.put("displayname", displayName);
         serialized.put("lore", lore);
@@ -324,36 +324,36 @@ public abstract class ItemBuilder<I extends ItemBuilder<I, M>, M extends ItemMet
         if (!attributes.isEmpty()) {
             this.attributes.forEach((attribute, modifier) -> MCWrappers.getItemWrapper().addAttributeModifier(itemStack, attribute, modifier));
         }
-//
-//        NBT.modify(itemStack, nbtItem -> {
-//            if (!this.customNBT.isEmpty()) {
-//                ReadWriteNBT customCompound = nbtItem.getOrCreateCompound("custom");
-//                this.customNBT.forEach((key, value) -> {
-//                    if (value instanceof String str) {
-//                        customCompound.setString(key, str);
-//                    } else if (value instanceof Integer i) {
-//                        customCompound.setInteger(key, i);
-//                    } else if (value instanceof Double d) {
-//                        customCompound.setDouble(key, d);
-//                    } else if (value instanceof Byte b) {
-//                        customCompound.setByte(key, b);
-//                    } else if (value instanceof Short s) {
-//                        customCompound.setShort(key, s);
-//                    } else if (value instanceof Long l) {
-//                        customCompound.setLong(key, l);
-//                    } else if (value instanceof Float f) {
-//                        customCompound.setFloat(key, f);
-//                    } else if (value instanceof Boolean b) {
-//                        customCompound.setBoolean(key, b);
-//                    } else if (value instanceof UUID uuid) {
-//                        customCompound.setUUID(key, uuid);
-//                    }
-//                });
-//            }
-//
-//            nbtItem.setBoolean("Unbreakable", unbreakable);
-//            nbtItem.setInteger("Damage", this.damage);
-//        });
+
+        NBT.modify(itemStack, nbtItem -> {
+            if (!this.customNBT.isEmpty()) {
+                ReadWriteNBT customCompound = nbtItem.getOrCreateCompound("custom");
+                this.customNBT.forEach((key, value) -> {
+                    if (value instanceof String str) {
+                        customCompound.setString(key, str);
+                    } else if (value instanceof Integer i) {
+                        customCompound.setInteger(key, i);
+                    } else if (value instanceof Double d) {
+                        customCompound.setDouble(key, d);
+                    } else if (value instanceof Byte b) {
+                        customCompound.setByte(key, b);
+                    } else if (value instanceof Short s) {
+                        customCompound.setShort(key, s);
+                    } else if (value instanceof Long l) {
+                        customCompound.setLong(key, l);
+                    } else if (value instanceof Float f) {
+                        customCompound.setFloat(key, f);
+                    } else if (value instanceof Boolean b) {
+                        customCompound.setBoolean(key, b);
+                    } else if (value instanceof UUID uuid) {
+                        customCompound.setUUID(key, uuid);
+                    }
+                });
+            }
+
+            nbtItem.setBoolean("Unbreakable", unbreakable);
+            nbtItem.setInteger("Damage", this.damage);
+        });
 
         return itemStack;
     }
