@@ -27,7 +27,6 @@ repositories {
 }
 
 dependencies {
-    api project(':material')
     compileOnly 'org.spigotmc:spigot-api:1.8-R0.1-SNAPSHOT'
     compileOnly "com.stardevllc:StarCore:${starcoreVersion}"
     compileOnly "de.tr7zw:item-nbt-api-plugin:${nbtapiVersion}"

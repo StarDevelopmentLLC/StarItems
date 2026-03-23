@@ -1,8 +1,8 @@
-main: com.stardevllc.staritems.plugin.StarItemsPlugin
+main: com.stardevllc.staritems.StarItemsPlugin
 version: ${version}
 api-version: 1.13
 name: ${rootProject.name}
 author: Firestar311
-depend: [NBTAPI, StarMCLib]
+depend: [NBTAPI, StarCore]
 commands: 
   staritems: 

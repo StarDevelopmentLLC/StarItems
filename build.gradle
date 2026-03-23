@@ -61,9 +61,19 @@ publishing {
 }
 
 dependencies {
-    implementation project(':common')
+    implementation project(':itembuilder')
+    implementation project(':material')
+    implementation project(':v1_8')
+    implementation project(':v1_13')
+    implementation project(':v1_13_2')
+    implementation project(':v1_14_4')
+    implementation project(':v1_16_1')
+    implementation project(':v1_17_1')
+    implementation project(':v1_19_3')
+    implementation project(':v1_20_1')
+    implementation project(':v1_21_1')
+    compileOnly "com.stardevllc:StarCore:${starcoreVersion}"
     compileOnly "org.spigotmc:spigot-api:${spigotVersion}"
-    compileOnly "com.stardevllc:StarMCLib:${starmclibVersion}"
     compileOnly "me.clip:placeholderapi:${papiVersion}"
     compileOnly "de.tr7zw:item-nbt-api-plugin:${nbtapiVersion}"
 }

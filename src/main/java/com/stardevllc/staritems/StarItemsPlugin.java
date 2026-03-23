@@ -1,6 +1,5 @@
-package com.stardevllc.staritems.plugin;
+package com.stardevllc.staritems;
 
-import com.stardevllc.staritems.StarItems;
 import com.stardevllc.staritems.cmd.StarItemsCommand;
 import com.stardevllc.starmclib.plugin.ExtendedJavaPlugin;
 
