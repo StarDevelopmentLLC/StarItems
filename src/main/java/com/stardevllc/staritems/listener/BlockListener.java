@@ -1,6 +1,6 @@
 package com.stardevllc.staritems.listener;
 
-import com.stardevllc.smcversion.MCWrappers;
+import com.stardevllc.starcore.MCWrappers;
 import com.stardevllc.staritems.StarItems;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;

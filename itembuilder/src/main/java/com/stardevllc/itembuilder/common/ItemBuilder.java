@@ -1,11 +1,11 @@
 package com.stardevllc.itembuilder.common;
 
 import com.stardevllc.smaterial.SMaterial;
-import com.stardevllc.smcversion.MCWrappers;
-import com.stardevllc.smcversion.wrappers.AttributeModifierWrapper;
+import com.stardevllc.starcore.MCWrappers;
 import com.stardevllc.starlib.objects.builder.IBuilder;
 import com.stardevllc.starlib.reflection.ReflectionHelper;
 import com.stardevllc.starlib.serialization.StarSerializable;
+import com.stardevllc.wrappers.AttributeModifierWrapper;
 import de.tr7zw.nbtapi.NBT;
 import de.tr7zw.nbtapi.iface.ReadWriteNBT;
 import de.tr7zw.nbtapi.iface.ReadableNBT;

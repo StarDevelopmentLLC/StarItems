@@ -1,9 +1,9 @@
 package com.stardevllc.staritems;
 
+import com.stardevllc.StarMCLib;
 import com.stardevllc.staritems.listener.*;
 import com.stardevllc.staritems.model.ItemRegistry;
 import com.stardevllc.staritems.tasks.InventoryItemTask;
-import com.stardevllc.starmclib.StarMCLib;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.ServicePriority;

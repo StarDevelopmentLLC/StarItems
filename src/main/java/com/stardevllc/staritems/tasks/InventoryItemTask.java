@@ -1,10 +1,10 @@
 package com.stardevllc.staritems.tasks;
 
-import com.stardevllc.smcversion.MCWrappers;
+import com.stardevllc.StarThread;
+import com.stardevllc.starcore.MCWrappers;
 import com.stardevllc.staritems.StarItems;
 import com.stardevllc.staritems.model.CustomItem;
 import com.stardevllc.starlib.helper.StringHelper;
-import com.stardevllc.starmclib.StarThread;
 import de.tr7zw.nbtapi.NBT;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;

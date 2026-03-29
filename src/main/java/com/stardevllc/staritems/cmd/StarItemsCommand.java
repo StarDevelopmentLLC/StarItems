@@ -1,9 +1,9 @@
 package com.stardevllc.staritems.cmd;
 
+import com.stardevllc.plugin.ExtendedJavaPlugin;
 import com.stardevllc.staritems.StarItems;
 import com.stardevllc.staritems.model.CustomItem;
 import com.stardevllc.staritems.model.ItemRegistry;
-import com.stardevllc.starmclib.plugin.ExtendedJavaPlugin;
 import org.bukkit.command.*;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
