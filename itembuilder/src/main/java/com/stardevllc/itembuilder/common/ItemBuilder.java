@@ -182,6 +182,54 @@ public abstract class ItemBuilder<I extends ItemBuilder<I, M>, M extends ItemMet
         return serialized;
     }
     
+    public static Function<String, String> getColorFunction() {
+        return colorFunction;
+    }
+    
+    public SMaterial getMaterial() {
+        return material;
+    }
+    
+    public int getAmount() {
+        return amount;
+    }
+    
+    public Map<String, AttributeModifierWrapper> getAttributes() {
+        return attributes;
+    }
+    
+    public Map<Enchantment, Integer> getEnchantments() {
+        return enchantments;
+    }
+    
+    public List<ItemFlag> getItemFlags() {
+        return itemFlags;
+    }
+    
+    public String getDisplayName() {
+        return displayName;
+    }
+    
+    public List<String> getLore() {
+        return lore;
+    }
+    
+    public boolean isUnbreakable() {
+        return unbreakable;
+    }
+    
+    public int getRepairCost() {
+        return repairCost;
+    }
+    
+    public int getDamage() {
+        return damage;
+    }
+    
+    public Map<String, Object> getCustomNBT() {
+        return customNBT;
+    }
+    
     public I addAttributeModifier(String attribute, String name, double amount, String operation, EquipmentSlot slot) {
         this.attributes.put(attribute, new AttributeModifierWrapper(UUID.randomUUID(), name, amount, operation, slot));
         return self();
