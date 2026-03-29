@@ -62,7 +62,6 @@ publishing {
 
 dependencies {
     implementation project(':itembuilder')
-    implementation project(':material')
     implementation project(':v1_8')
     implementation project(':v1_13')
     implementation project(':v1_13_2')
