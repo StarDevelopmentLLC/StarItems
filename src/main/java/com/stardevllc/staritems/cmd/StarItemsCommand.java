@@ -4,6 +4,7 @@ import com.stardevllc.plugin.ExtendedJavaPlugin;
 import com.stardevllc.staritems.StarItems;
 import com.stardevllc.staritems.model.CustomItem;
 import com.stardevllc.staritems.model.ItemRegistry;
+import com.stardevllc.starlib.objects.key.Keys;
 import org.bukkit.command.*;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
@@ -62,7 +63,7 @@ public class StarItemsCommand implements CommandExecutor {
                 return true;
             }
             
-            CustomItem customItem = StarItems.getItemRegistry().get(args[1]);
+            CustomItem customItem = StarItems.getItemRegistry().get(Keys.of(args[1]));
             if (customItem == null) {
                 plugin.getColors().coloredLegacy(sender, "&cYou provided an invalid item id.");
                 return true;

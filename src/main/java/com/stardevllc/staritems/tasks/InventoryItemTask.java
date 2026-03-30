@@ -5,6 +5,7 @@ import com.stardevllc.starcore.MCWrappers;
 import com.stardevllc.staritems.StarItems;
 import com.stardevllc.staritems.model.CustomItem;
 import com.stardevllc.starlib.helper.StringHelper;
+import com.stardevllc.starlib.objects.key.Keys;
 import de.tr7zw.nbtapi.NBT;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -80,6 +81,6 @@ public class InventoryItemTask extends StarThread<JavaPlugin> {
             return null;
         }
         
-        return StarItems.getItemRegistry().get(id);
+        return StarItems.getItemRegistry().get(Keys.of(id));
     }
 }
