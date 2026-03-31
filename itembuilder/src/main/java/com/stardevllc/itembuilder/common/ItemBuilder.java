@@ -170,7 +170,7 @@ public abstract class ItemBuilder<I extends ItemBuilder<I, M>, M extends ItemMet
         Map<String, Object> serialized = new HashMap<>();
         serialized.put("material", material);
         serialized.put("amount", amount);
-        serialized.put("attributes", attributes);
+//        serialized.put("attributes", attributes);
 //        serialized.put("enchantments", enchantments);
         serialized.put("flags", itemFlags);
         serialized.put("displayname", displayName);
