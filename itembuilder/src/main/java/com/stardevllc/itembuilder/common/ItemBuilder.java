@@ -408,9 +408,6 @@ public abstract class ItemBuilder<I extends ItemBuilder<I, M>, M extends ItemMet
                     }
                 });
             }
-
-            nbtItem.setBoolean("Unbreakable", unbreakable);
-            nbtItem.setInteger("Damage", this.damage);
         });
 
         return itemStack;
