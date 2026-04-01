@@ -308,6 +308,16 @@ public abstract class ItemBuilder<I extends ItemBuilder<I, M>, M extends ItemMet
         this.customNBT.put(key, value);
         return self();
     }
+    
+    public I clearCustomNBT() {
+        this.customNBT.clear();
+        return self();
+    }
+    
+    public I removeCustomNBT(String key) {
+        this.customNBT.remove(key);
+        return self();
+    }
 
     protected M createItemMeta() {
         M itemMeta = (M) Bukkit.getItemFactory().getItemMeta(this.material.parseMaterial());
