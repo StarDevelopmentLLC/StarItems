@@ -2,6 +2,7 @@ package com.stardevllc.staritems.model;
 
 import com.stardevllc.itembuilder.common.ItemBuilder;
 import com.stardevllc.staritems.ItemBuilders;
+import com.stardevllc.starlib.objects.key.*;
 import de.tr7zw.nbtapi.NBT;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
@@ -14,10 +15,13 @@ import java.util.Set;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
-public class CustomItem {
+public class CustomItem implements Keyable {
     public static Function<String, String> stripColorFunction = ChatColor::stripColor;
     
+    public static final String NBT_KEY = "staritemskey";
+    
     protected JavaPlugin plugin;
+    protected Key key;
     protected String name;
     protected ItemBuilder<?, ?> itemBuilder;
     
@@ -28,8 +32,9 @@ public class CustomItem {
     protected Consumer<Player> whileWearingConsumer;
     protected Consumer<Player> whileHoldingConsumer;
     
-    public CustomItem(JavaPlugin plugin, String name, ItemBuilder<?, ?> itemBuilder) {
+    public CustomItem(JavaPlugin plugin, Key key, String name, ItemBuilder<?, ?> itemBuilder) {
         this.plugin = plugin;
+        this.key = key;
         this.name = stripColorFunction.apply(name.toLowerCase().replace(" ", "_"));
         this.itemBuilder = itemBuilder;
     }
@@ -37,9 +42,11 @@ public class CustomItem {
     public CustomItem(JavaPlugin plugin, ItemStack itemStack) {
         this.plugin = plugin;
         this.itemBuilder = ItemBuilders.of(itemStack);
-        this.name = NBT.get(itemStack, nbt -> {
-            return nbt.getString("staritemsid");
+        String staritemsid = NBT.get(itemStack, nbt -> {
+            return nbt.getString(NBT_KEY);
         });
+        this.key = Keys.of(staritemsid);
+        this.name = staritemsid;
     }
     
     public <T extends Event> void addEventHandler(Class<T> eventType, EventHandler<T> listener) {
@@ -101,8 +108,13 @@ public class CustomItem {
     public ItemStack toItemStack() {
         ItemStack itemStack = this.itemBuilder.build();
         NBT.modify(itemStack, nbt -> {
-            nbt.setString("staritemsid", this.name);
+            nbt.setString(NBT_KEY, this.key.toString());
         });
         return itemStack;
+    }
+    
+    @Override
+    public Key getKey() {
+        return key;
     }
 }

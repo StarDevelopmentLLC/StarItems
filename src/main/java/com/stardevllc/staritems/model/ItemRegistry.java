@@ -31,7 +31,7 @@ public class ItemRegistry extends PluginRegistry<CustomItem> {
             }
 
             String id = NBT.get(itemStack, nbt -> {
-                return nbt.getString("staritemsid");
+                return nbt.getString(CustomItem.NBT_KEY);
             });
             
             if (StringHelper.isEmpty(id)) {
