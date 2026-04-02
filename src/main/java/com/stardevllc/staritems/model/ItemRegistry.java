@@ -13,7 +13,7 @@ import java.util.HashMap;
 public class ItemRegistry extends PluginRegistry<CustomItem> {
     public ItemRegistry(JavaPlugin plugin) {
         super(CustomItem.class, new StringKey("customitems"), "Custom Items", new HashMap<>(), null);
-        addRegisterListener(e -> plugin.getLogger().info("Registered the item " + e.value().getName() + " from the plugin " + e.value().getPlugin().getName() + " v" + e.value().getPlugin().getDescription().getVersion()));
+        addRegisterListener(e -> plugin.getLogger().info("Registered the item " + e.value().getKey() + " from the plugin " + e.value().getPlugin().getName() + " v" + e.value().getPlugin().getDescription().getVersion()));
     }
     
     public void handleItemEvent(org.bukkit.event.Event event, ItemStack... itemStacks) {

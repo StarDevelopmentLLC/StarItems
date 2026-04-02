@@ -44,7 +44,7 @@ public class StarItemsCommand implements CommandExecutor {
 
             plugin.getColors().coloredLegacy(sender, "&aList of registered items.");
             for (CustomItem customItem : registry) {
-                plugin.getColors().coloredLegacy(sender, "  &8- &a" + customItem.getName() + " &7[&d" + customItem.getPlugin() + "&7]");
+                plugin.getColors().coloredLegacy(sender, "  &8- &a" + customItem.getKey() + " &7[&d" + customItem.getPlugin() + "&7]");
             }
             return true;
         } else if (args[0].equalsIgnoreCase("give")) {
@@ -82,7 +82,7 @@ public class StarItemsCommand implements CommandExecutor {
             }
             
             player.getInventory().addItem(customItem.toItemStack());
-            plugin.getColors().coloredLegacy(player, "&eYou gave yourself &b" + itemStack.getAmount() + " &eof the custom item &b" + customItem.getName());
+            plugin.getColors().coloredLegacy(player, "&eYou gave yourself &b" + itemStack.getAmount() + " &eof the custom item &b" + customItem.getKey());
         }
         
         return true;

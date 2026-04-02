@@ -22,7 +22,6 @@ public class CustomItem implements Keyable {
     
     protected JavaPlugin plugin;
     protected Key key;
-    protected String name;
     protected ItemBuilder<?, ?> itemBuilder;
     
     protected Set<EventHandler<? extends Event>> eventHandlers = new HashSet<>();
@@ -32,21 +31,14 @@ public class CustomItem implements Keyable {
     protected Consumer<Player> whileWearingConsumer;
     protected Consumer<Player> whileHoldingConsumer;
     
-    public CustomItem(JavaPlugin plugin, Key key, String name, ItemBuilder<?, ?> itemBuilder) {
+    public CustomItem(JavaPlugin plugin, ItemBuilder<?, ?> itemBuilder) {
         this.plugin = plugin;
-        this.key = key;
-        this.name = stripColorFunction.apply(name.toLowerCase().replace(" ", "_"));
         this.itemBuilder = itemBuilder;
     }
     
     public CustomItem(JavaPlugin plugin, ItemStack itemStack) {
         this.plugin = plugin;
         this.itemBuilder = ItemBuilders.of(itemStack);
-        String staritemsid = NBT.get(itemStack, nbt -> {
-            return nbt.getString(NBT_KEY);
-        });
-        this.key = Keys.of(staritemsid);
-        this.name = staritemsid;
     }
     
     public <T extends Event> void addEventHandler(Class<T> eventType, EventHandler<T> listener) {
@@ -59,10 +51,6 @@ public class CustomItem implements Keyable {
                 ((EventHandler<T>) eventHandler).onEvent(event);
             } catch (Throwable throwable) {}
         }
-    }
-    
-    public String getName() {
-        return name;
     }
     
     public Consumer<Player> getWhileInInventoryConsumer() {
@@ -116,5 +104,15 @@ public class CustomItem implements Keyable {
     @Override
     public Key getKey() {
         return key;
+    }
+    
+    @Override
+    public void setKey(Key key) {
+        this.key = key;
+    }
+    
+    @Override
+    public boolean supportsSettingKey() {
+        return true;
     }
 }
