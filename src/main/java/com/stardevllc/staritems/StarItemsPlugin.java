@@ -1,6 +1,6 @@
 package com.stardevllc.staritems;
 
-import com.stardevllc.plugin.ExtendedJavaPlugin;
+import com.stardevllc.minecraft.plugin.ExtendedJavaPlugin;
 import com.stardevllc.staritems.cmd.StarItemsCommand;
 
 public class StarItemsPlugin extends ExtendedJavaPlugin {

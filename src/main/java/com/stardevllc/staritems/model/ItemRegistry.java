@@ -1,6 +1,6 @@
 package com.stardevllc.staritems.model;
 
-import com.stardevllc.registry.PluginRegistry;
+import com.stardevllc.minecraft.registry.PluginRegistry;
 import com.stardevllc.starlib.helper.StringHelper;
 import com.stardevllc.starlib.objects.key.impl.StringKey;
 import de.tr7zw.nbtapi.NBT;

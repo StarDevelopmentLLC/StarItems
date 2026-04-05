@@ -1,6 +1,6 @@
 package com.stardevllc.staritems.tasks;
 
-import com.stardevllc.StarThread;
+import com.stardevllc.minecraft.StarThread;
 import com.stardevllc.starcore.MCWrappers;
 import com.stardevllc.staritems.StarItems;
 import com.stardevllc.staritems.model.CustomItem;

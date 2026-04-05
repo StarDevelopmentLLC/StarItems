@@ -1,6 +1,7 @@
 package com.stardevllc.staritems;
 
-import com.stardevllc.StarMCLib;
+import com.stardevllc.minecraft.StarMCLib;
+import com.stardevllc.starcore.ItemBuilders;
 import com.stardevllc.staritems.listener.*;
 import com.stardevllc.staritems.model.ItemRegistry;
 import com.stardevllc.staritems.tasks.InventoryItemTask;
